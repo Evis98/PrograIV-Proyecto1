@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Escinf
+ * @author ghk
  */
 public class Cliente {
     String cedula;
