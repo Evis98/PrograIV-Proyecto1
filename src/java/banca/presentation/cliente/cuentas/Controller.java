@@ -6,7 +6,7 @@
 package banca.presentation.cliente.cuentas;
 
 import banca.logic.Cliente;
-import banca.logic.Usuario;
+import banca.logic.User;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +43,7 @@ public class Controller extends HttpServlet {
         banca.logic.Model domainModel = banca.logic.Model.instance();
         HttpSession session = request.getSession(true);
  
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        User usuario = (User) session.getAttribute("usuario");
         Cliente cliente;
         try {
             cliente = domainModel.clienteFind(usuario);

@@ -24,7 +24,7 @@ public class Model {
         return uniqueInstance; 
     }
 
-    HashMap<String,Usuario> usuarios;
+    HashMap<String,User> usuarios;
     HashMap<String,Cliente> clientes;
     HashMap<String,Cuenta> cuentas;
     HashMap<String,List<String>> favoritas;
@@ -32,9 +32,9 @@ public class Model {
     
     private Model(){
         usuarios = new HashMap();
-        usuarios.put("111", new Usuario("111","111",1));
-        usuarios.put("222", new Usuario("222","222",1));
-        usuarios.put("333", new Usuario("333","333",2));
+        usuarios.put("111", new User("111","111",1));
+        usuarios.put("222", new User("222","222",1));
+        usuarios.put("333", new User("333","333",2));
         
         clientes = new HashMap(); 
         clientes.put("111", new Cliente("111","J.Perez",usuarios.get("111")));
@@ -52,12 +52,12 @@ public class Model {
         favoritas.put("222", Arrays.asList(new String[]{"1-111-11","1-222-22"}));
     }
 
-    public Usuario usuarioFind(String cedula,String clave) throws Exception{
+    public User usuarioFind(String cedula,String clave) throws Exception{
         if (usuarios.get(cedula)!=null) return usuarios.get(cedula);
         else throw new Exception("Usuario no existe");
     }
 
-    public Cliente clienteFind(Usuario usuario) throws Exception{
+    public Cliente clienteFind(User usuario) throws Exception{
         if (clientes.get(usuario.getCedula())!=null) return clientes.get(usuario.getCedula());
         else throw new Exception("Cliente no existe");
     }    

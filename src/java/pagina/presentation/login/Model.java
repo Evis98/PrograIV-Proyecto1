@@ -3,30 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package banca.presentation.login;
+package pagina.presentation.login;
 
-import banca.logic.User;
+/**
+ *
+ * @author PC
+ */
+
+
+import pagina.logica.Usuario;
 
 /**
  *
  * @author jsanchez
  */
 public class Model {
-    User current;
+    Usuario current;
 
     public Model() {
         this.reset();
     }
     
     public void reset(){
-        setCurrent(new User());        
+        setCurrent(new Usuario());        
     }
     
-    public User getCurrent() {
+    public Usuario getCurrent() {
         return current;
     }
 
-    public void setCurrent(User current) {
+    public void setCurrent(Usuario current) {
         this.current = current;
     }
    

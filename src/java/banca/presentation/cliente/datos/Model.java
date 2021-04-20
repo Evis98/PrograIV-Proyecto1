@@ -6,7 +6,7 @@
 package banca.presentation.cliente.datos;
 
 import banca.logic.Cliente;
-import banca.logic.Usuario;
+import banca.logic.User;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Model{
     Cliente current;
 
     public Model() {
-        this.current = new Cliente("","",new Usuario("","",1));
+        this.current = new Cliente("","",new User("","",1));
     }
 
     

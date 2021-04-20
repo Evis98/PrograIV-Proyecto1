@@ -16,10 +16,10 @@ import java.util.Objects;
 public class Cliente {
     String cedula;
     String nombre;
-    Usuario usuario;
+    User usuario;
     List<Cuenta> cuentas;
 
-    public Cliente(String cedula, String nombre, Usuario usuario) {
+    public Cliente(String cedula, String nombre, User usuario) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.usuario = usuario;
@@ -43,11 +43,11 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

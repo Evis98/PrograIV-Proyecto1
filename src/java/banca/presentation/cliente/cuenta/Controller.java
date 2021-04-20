@@ -6,7 +6,7 @@
 package banca.presentation.cliente.cuenta;
 
 import banca.logic.Cliente;
-import banca.logic.Usuario;
+import banca.logic.User;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +71,7 @@ public class Controller extends HttpServlet {
         Model model = (Model) request.getAttribute("model");
         banca.logic.Model domainModel = banca.logic.Model.instance();
         HttpSession session = request.getSession(true);
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        User usuario = (User) session.getAttribute("usuario");
         try {        
             model.setCurrent(domainModel.cuentaFind(model.getCurrent().getNumero()));
             if (!(model.getCurrent().getCliente().getCedula().equals(usuario.getCedula()))) 

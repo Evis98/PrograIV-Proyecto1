@@ -3,9 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package banca.presentation.login;
+package pagina.presentation.login;
 
-import banca.logic.User;
+/**
+ *
+ * @author PC
+ */
+
+
+import pagina.logica.Usuario;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +33,7 @@ public class Controller extends HttpServlet {
                                 HttpServletResponse response)
          throws ServletException, IOException {
       
-        request.setAttribute("model", new Model()); 
+        request.setAttribute("model", new banca.presentation.login.Model()); 
         
         String viewUrl="";
         switch(request.getServletPath()){
@@ -74,7 +80,7 @@ public class Controller extends HttpServlet {
     }
     
     void updateModel(HttpServletRequest request){
-       Model model= (Model) request.getAttribute("model");
+       pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
        
         model.getCurrent().setCedula(request.getParameter("cedulaFld"));
         model.getCurrent().setClave(request.getParameter("claveFld"));
@@ -82,11 +88,11 @@ public class Controller extends HttpServlet {
 
         
     public String loginAction(HttpServletRequest request) {
-        Model model= (Model) request.getAttribute("model");
-        banca.logic.Model  domainModel = banca.logic.Model.instance();
+        pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
+        pagina.logica.Model  domainModel = pagina.logica.Model.instance();
         HttpSession session = request.getSession(true);
         try {
-            User real = domainModel.usuarioFind(model.getCurrent().getCedula(),model.getCurrent().getClave());
+            Usuario real = domainModel.usuarioFind(model.getCurrent().getCedula(),model.getCurrent().getClave());
             session.setAttribute("usuario", real);
             String viewUrl="";
             switch(real.getTipo()){
@@ -123,7 +129,7 @@ public class Controller extends HttpServlet {
     }
         
     public String showAction(HttpServletRequest request){
-        Model model= (Model) request.getAttribute("model");
+        pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
         model.getCurrent().setCedula("");
         model.getCurrent().setClave("");
         return "/presentation/login/View.jsp"; 
