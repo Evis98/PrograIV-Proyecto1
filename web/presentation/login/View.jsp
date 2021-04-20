@@ -15,7 +15,7 @@
         <% Map<String,String> errores = (Map<String,String>) request.getAttribute("errores"); %>
         <% Map<String,String[]> form = (errores==null)?this.getForm(model):request.getParameterMap();%>
         
-        <form name="form" action="/Guia/presentation/login/login" method="post" > 
+        <form name="form" action="/Matricula/presentation/login/login" method="post" > 
             <div class="panel" style="width:30%;">
                 <div class="fila encabezado">Login</div>
                 <div class="fila">

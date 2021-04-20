@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                         <% for(Cuenta c:cuentas){%>
-                <tr> <td><a href="/Guia/presentation/cliente/cuenta/show?numeroFld=<%=c.getNumero()%>"><%=c.getNumero()%> </td>  
+                <tr> <td><a href="/Matricula/presentation/cliente/cuenta/show?numeroFld=<%=c.getNumero()%>"><%=c.getNumero()%> </td>  
                         <td><%=c.getSaldo()%></td></tr> 
 <!--                         <tr> <td><form action="/Guia/presentation/cliente/cuenta/show">
                                     <input type="hidden" name="numeroFld" value="<%=c.getNumero()%>"> 
