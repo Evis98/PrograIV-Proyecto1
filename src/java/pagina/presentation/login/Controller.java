@@ -33,7 +33,7 @@ public class Controller extends HttpServlet {
                                 HttpServletResponse response)
          throws ServletException, IOException {
       
-        request.setAttribute("model", new banca.presentation.login.Model()); 
+        request.setAttribute("model", new Model()); 
         
         String viewUrl="";
         switch(request.getServletPath()){
@@ -97,7 +97,7 @@ public class Controller extends HttpServlet {
             String viewUrl="";
             switch(real.getTipo()){
                 case 1:
-                    viewUrl="/presentation/cliente/cuentas/show";
+                    viewUrl="/presentation/usuario/estudiante/View.jsp";
                     break;
                 case 2:
                      viewUrl="";
