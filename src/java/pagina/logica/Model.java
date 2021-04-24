@@ -6,8 +6,6 @@
 package pagina.logica;
 import pagina.logica.Usuario;
 import pagina.logica.Estudiante;
-//import banca.logic.Cliente;
-//import banca.logic.Cuenta;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,7 +26,10 @@ public class Model {
     }
 
     HashMap<String,Usuario> usuarios;
-//    HashMap<String,Cliente> clientes;
+    HashMap<String,Estudiante> estudiantes;
+    HashMap<String,Profesor> profesores;
+    HashMap<String,Administrador> administradores;
+    
 //    HashMap<String,Cuenta> cuentas;
 //    HashMap<String,List<String>> favoritas;
     
@@ -36,14 +37,26 @@ public class Model {
     private Model(){
         usuarios = new HashMap();
         usuarios.put("111", new Usuario("111","111",1));
-        usuarios.put("222", new Usuario("222","222",1));
-        usuarios.put("333", new Usuario("333","333",2));
+        usuarios.put("222", new Usuario("222","222",2));
+        usuarios.put("333", new Usuario("333","333",3));
+    
+        estudiantes = new HashMap(); 
+        estudiantes.put("111", new Estudiante("111","J.Perez",usuarios.get("111")));
+//        estudiantes.put("222", new Estudiante("222","B.Banner",usuarios.get("222")));
+//        estudiantes.put("333", new Estudiante("333","L.Kjero",usuarios.get("333")));
+        
+        profesores = new HashMap(); 
+//        profesores.put("111", new Profesor("111","J.Perez",usuarios.get("111")));
+        profesores.put("222", new Profesor("222","B.Banner",usuarios.get("222")));
+//        profesores.put("333", new Profesor("333","L.Kjero",usuarios.get("333")));
+
+
+        administradores = new HashMap();
+        administradores.put("333",new Administrador());
+        
+        
+        
     }
-//        clientes = new HashMap(); 
-//        clientes.put("111", new Cliente("111","J.Perez",usuarios.get("111")));
-//        clientes.put("222", new Cliente("222","B.Banner",usuarios.get("222")));
-//        clientes.put("333", new Cliente("333","L.Kjero",usuarios.get("333")));
-//        
 //        cuentas = new HashMap(); 
 //        cuentas.put("1-111-11", new Cuenta("1-111-11",100.0,clientes.get("111")));
 //        cuentas.put("1-222-22", new Cuenta("1-222-22",200.0,clientes.get("111")));        
@@ -60,10 +73,20 @@ public class Model {
         else throw new Exception("Usuario no existe");
     }
 
-//    public Cliente clienteFind(Usuario usuario) throws Exception{
-//        if (clientes.get(usuario.getCedula())!=null) return clientes.get(usuario.getCedula());
-//        else throw new Exception("Cliente no existe");
-//    }    
+    public Estudiante estudianteFind(Usuario usuario) throws Exception{
+        if (estudiantes.get(usuario.getCedula())!=null) return estudiantes.get(usuario.getCedula());
+        else throw new Exception("Estudiante no existe");
+    }
+
+    public Profesor profesorFind(Usuario usuario) throws Exception{
+        if (profesores.get(usuario.getCedula())!=null) return profesores.get(usuario.getCedula());
+        else throw new Exception("Profesor no existe");
+    }      
+    
+    public Administrador administradorFind(Usuario usuario) throws Exception{
+        if (administradores.get(usuario.getCedula())!=null) return administradores.get(usuario.getCedula());
+        else throw new Exception("Administrador no existe");
+    } 
 //    public List<Cuenta> cuentasFind(Cliente cliente) throws Exception{
 //        List<Cuenta> result = new ArrayList();
 //        for(Cuenta c: cuentas.values()){
@@ -82,13 +105,31 @@ public class Model {
 //        return result;
 //    }
 //
-//    public void clienteUpdate(Cliente cliente) throws Exception{
-//        if (clientes.get(cliente.getCedula())==null) 
-//            throw new Exception("Cliente no existe");
-//        else{
-//            clientes.get(cliente.getCedula()).setNombre(cliente.getNombre());
-//        }
-//    }
+    public void estudianteUpdate(Estudiante estudiante) throws Exception{
+        if (estudiantes.get(estudiante.getCedula())==null) 
+            throw new Exception("Estudiante no existe");
+        else{
+            estudiantes.get(estudiante.getCedula()).setNombre(estudiante.getNombre());
+        }
+    }
+        public void profesorUpdate(Profesor profesor) throws Exception{
+        if (profesores.get(profesor.getCedula())==null) 
+            throw new Exception("Profesor no existe");
+        else{
+            profesores.get(profesor.getCedula()).setNombre(profesor.getNombre());
+        }
+    }
+        
+          public void administradorUpdate(Administrador administrador) throws Exception{
+        if (administradores.get(administrador.getCedula())==null) 
+            throw new Exception("Administrador no existe");
+        else{
+            administradores.get(administrador.getCedula()).setNombre(administrador.getNombre());
+        }
+    }    
+    
+    
+
 //    
 //    public Cuenta cuentaFind(String numero) throws Exception{
 //        if (cuentas.get(numero)!=null) return cuentas.get(numero);

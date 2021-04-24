@@ -17,7 +17,8 @@
               </li>
                         <% if (usuario!=null){ %>
                 <li >
-                  <a  href="/Matricula/presentation/usuario/estudiante/View.jsp">Usuario:<%=usuario.getCedula()%></a>
+                  <a  href="/Matricula/presentation/estudiante/datos/show">Usuario:<%=usuario.getCedula()%></a>
+  
                   <ul>  <!--submenu --></ul>
                 </li> 
                 <li >

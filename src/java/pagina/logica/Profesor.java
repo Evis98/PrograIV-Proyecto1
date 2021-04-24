@@ -5,42 +5,50 @@
  */
 package pagina.logica;
 
+import java.util.Objects;
+
 /**
  *
  * @author Ivan
  */
 public class Profesor {
-    int id_profesor;
+    String cedula;
     String apellidos;
     String nombre;
     String mail;
     String especialidad;
-    Usuario tipo_usuario;
+    Usuario usuario;
     Grupo grupos_a_cargo;
     Curso cursos_a_cargo;
     
+    
+    public Profesor(String cedula, String nombre, Usuario usuario) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.usuario = usuario;
+    }
     public Profesor() {
     }
     
     public Profesor(int id_profesor){
     }
     
-    public Profesor(int id_profesor, String apellidos, String nombre, String mail, String especialidad, Usuario tipo_usuario, Grupo grupos_a_cargo, Curso cursos_a_cargo) {
-        this.id_profesor = id_profesor;
+    public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario, Grupo grupos_a_cargo, Curso cursos_a_cargo) {
+        this.cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.mail = mail;
         this.especialidad = especialidad;
-        this.tipo_usuario = tipo_usuario;
+        this.usuario = usuario;
         this.grupos_a_cargo = grupos_a_cargo;
         this.cursos_a_cargo = cursos_a_cargo;
     }
     
-    public int getId_profesor() {
-        return id_profesor;
+    public String getCedula() {
+        return cedula;
     }
-    public void setId_profesor(int id_profesor) {
-        this.id_profesor = id_profesor;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getApellidos() {
@@ -71,11 +79,11 @@ public class Profesor {
         this.especialidad = especialidad;
     }
 
-    public Usuario getTipo_usuario() {
-        return tipo_usuario;
+    public Usuario usuario() {
+        return usuario;
     }
-    public void setTipo_usuario(Usuario tipo_usuario) {
-        this.tipo_usuario = tipo_usuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Grupo getGrupos_a_cargo() {
@@ -90,5 +98,22 @@ public class Profesor {
     }
     public void setCursos_a_cargo(Curso cursos_a_cargo) {
         this.cursos_a_cargo = cursos_a_cargo;
+    }
+     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Profesor other = (Profesor) obj;
+        if (!Objects.equals(this.cedula, other.cedula)) {
+            return false;
+        }
+        return true;
     }
 }

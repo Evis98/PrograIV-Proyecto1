@@ -97,7 +97,7 @@ public class Controller extends HttpServlet {
             String viewUrl="";
             switch(real.getTipo()){
                 case 1:
-                    viewUrl="/presentation/usuario/estudiante/View.jsp";
+                    viewUrl="/presentation/usuario/View.jsp";
                     break;
                 case 2:
                      viewUrl="";

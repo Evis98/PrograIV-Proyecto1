@@ -14,7 +14,7 @@
 <body >
     <%@ include file="/presentation/Header.jsp" %>
 
-    <div><H1 >Pendiente sistema de matricula</H1></div>
+    <div><H1 >Pendiente datos</H1></div>
   
    
      <%@ include file="/presentation/Footer.jsp" %>

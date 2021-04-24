@@ -5,40 +5,45 @@
  */
 package pagina.logica;
 
+import java.util.Objects;
+
 /**
  *
  * @author Ivan
  */
 public class Estudiante {
-    int id_estudiante;
+    String cedula;
     String apellidos;
     String nombre;
     String telefono;
     String mail;
-    Usuario tipo_usuario;
+    Usuario usuario;
     Curso historial;
     
     public Estudiante(){
     }
     
-    public Estudiante(int id_estudiante){
+    public Estudiante(String cedula, String nombre, Usuario usuario) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.usuario = usuario;
     }
     
-    public Estudiante(int id_estudiante, String apellidos, String nombre, String telefono, String mail, Usuario tipo_usuario, Curso historial){
-        this.id_estudiante = id_estudiante;
+    public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario, Curso historial){
+        this.cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.telefono = telefono;
         this.mail = mail;
-        this.tipo_usuario = tipo_usuario;
+        this.usuario = usuario;
         this.historial = historial;
     }
    
-    public int getId_estudiante() {
-        return id_estudiante;
+    public String getCedula() {
+        return cedula;
     }
-    public void setId_estudiante(int id_estudiante) {
-        this.id_estudiante = id_estudiante;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getApellidos() {
@@ -69,11 +74,11 @@ public class Estudiante {
         this.mail = mail;
     }
 
-    public Usuario getTipo_usuario() {
-        return tipo_usuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
-    public void setTipo_usuario(Usuario id_usuario) {
-        this.tipo_usuario = id_usuario;
+    public void setUsuario(Usuario id_usuario) {
+        this.usuario = id_usuario;
     }
 
     public Curso getHistorial() {
@@ -82,4 +87,21 @@ public class Estudiante {
     public void setHistorial(Curso historial) {
         this.historial = historial;
     }  
+        @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Estudiante other = (Estudiante) obj;
+        if (!Objects.equals(this.cedula, other.cedula)) {
+            return false;
+        }
+        return true;
+    }
 }
