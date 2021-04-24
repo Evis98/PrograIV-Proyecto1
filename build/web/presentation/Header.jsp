@@ -16,16 +16,35 @@
                 </li>
               </li>
                         <% if (usuario!=null){ %>
+                        <% if (usuario.getTipo()== 1){%>
                 <li >
                   <a  href="/Matricula/presentation/estudiante/datos/show">Usuario:<%=usuario.getCedula()%></a>
   
                   <ul>  <!--submenu --></ul>
                 </li> 
+                        <% } %>
+                       <% if (usuario.getTipo()== 2){%>
+                <li >
+                  <a  href="/Matricula/presentation/profesor/datos/show">Usuario:<%=usuario.getCedula()%></a>
+  
+                  <ul>  <!--submenu --></ul>
+                </li> 
+                        <% } %>
+                    <% if (usuario.getTipo()== 3){%>
+                <li >
+                  <a  href="/Matricula/presentation/administrador/datos/show">Usuario:<%=usuario.getCedula()%></a>
+  
+                  <ul>  <!--submenu --></ul>
+                </li> 
+                        <% } %>
+                        
                 <li >
                   <a  href="/Matricula/presentation/login/logout">Logout</a>
                   <ul>  <!--submenu --> </ul>
                 </li>
                         <% } %>
+                        
+     
                         <% if (usuario==null){%>
                 <li>
                   <a href="/Matricula/presentation/login/show">Login</a>

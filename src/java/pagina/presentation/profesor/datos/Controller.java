@@ -26,7 +26,7 @@ public class Controller extends HttpServlet {
                                 HttpServletResponse response)
          throws ServletException, IOException {
 
-        request.setAttribute("model", new pagina.presentation.estudiante.datos.Model());
+        request.setAttribute("model", new pagina.presentation.profesor.datos.Model());
         
         String viewUrl="";     
         switch (request.getServletPath()) {
