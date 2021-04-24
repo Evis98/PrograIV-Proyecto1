@@ -22,7 +22,7 @@ import pagina.logica.Administrador;
 import pagina.logica.Usuario;
 
 
-@WebServlet(name = "AministradorDatosController", urlPatterns = {"/presentation/administrador/datos/show","/presentation/administrador/datos/update"})
+@WebServlet(name = "AministradorDatosController", urlPatterns = {"/presentation/usuario/administrador/datos/show","/presentation/usuario/administrador/datos/update"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -33,10 +33,10 @@ public class Controller extends HttpServlet {
         
         String viewUrl="";     
         switch (request.getServletPath()) {
-          case "/presentation/administrador/datos/show":
+          case "/presentation/usuario/administrador/datos/show":
               viewUrl = this.show(request);
               break;
-          case "/presentation/administrador/datos/update":
+          case "/presentation/usuario/administrador/datos/update":
               viewUrl = this.update(request);
               break;              
         }          
@@ -58,7 +58,7 @@ public class Controller extends HttpServlet {
         } catch (Exception ex) { administrador =null; }
         try {        
             model.setCurrent(administrador);
-            return "/presentation/administrador/datos/View.jsp";
+            return "/presentation/usuario/administrador/datos/View.jsp";
         } catch (Exception ex) { return ""; }
     }
     
@@ -77,7 +77,7 @@ public class Controller extends HttpServlet {
             }
             else{
                 request.setAttribute("errores", errores);
-                return "/presentation/administrador/datos/View.jsp"; 
+                return "/presentation/usuario/administrador/datos/View.jsp"; 
             }            
         }
         catch(Exception e){
@@ -114,7 +114,7 @@ public class Controller extends HttpServlet {
             Map<String,String> errores = new HashMap<>();
             request.setAttribute("errores", errores);
             errores.put("nombreFld","cedula o nombreincorrectos");
-            return "/presentation/administrador/datos/View.jsp"; 
+            return "/presentation/usuario/administrador/datos/View.jsp"; 
         }        
     }   
    

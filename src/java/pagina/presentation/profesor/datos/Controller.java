@@ -19,7 +19,7 @@ import pagina.logica.Profesor;
 import pagina.logica.Usuario;
 
 
-@WebServlet(name = "ProfesorDatosController", urlPatterns = {"/presentation/profesor/datos/show","/presentation/profesor/datos/update"})
+@WebServlet(name = "ProfesorDatosController", urlPatterns = {"/presentation/usuario/profesor/datos/show","/presentation/usuario/profesor/datos/update"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -30,10 +30,10 @@ public class Controller extends HttpServlet {
         
         String viewUrl="";     
         switch (request.getServletPath()) {
-          case "/presentation/profesor/datos/show":
+          case "/presentation/usuario/profesor/datos/show":
               viewUrl = this.show(request);
               break;
-          case "/presentation/profesor/datos/update":
+          case "/presentation/usuario/profesor/datos/update":
               viewUrl = this.update(request);
               break;              
         }          
@@ -55,7 +55,7 @@ public class Controller extends HttpServlet {
         } catch (Exception ex) { profesor =null; }
         try {        
             model.setCurrent(profesor);
-            return "/presentation/profesor/datos/View.jsp";
+            return "/presentation/usuario/profesor/datos/View.jsp";
         } catch (Exception ex) { return ""; }
     }
     
@@ -74,7 +74,7 @@ public class Controller extends HttpServlet {
             }
             else{
                 request.setAttribute("errores", errores);
-                return "/presentation/profesor/datos/View.jsp"; 
+                return "/presentation/usuario/profesor/datos/View.jsp"; 
             }            
         }
         catch(Exception e){
@@ -111,7 +111,7 @@ public class Controller extends HttpServlet {
             Map<String,String> errores = new HashMap<>();
             request.setAttribute("errores", errores);
             errores.put("nombreFld","cedula o nombreincorrectos");
-            return "/presentation/profesor/datos/View.jsp"; 
+            return "/presentation/usuario/profesor/datos/View.jsp"; 
         }        
     }   
    

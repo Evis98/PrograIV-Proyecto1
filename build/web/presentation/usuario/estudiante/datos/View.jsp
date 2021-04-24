@@ -23,13 +23,23 @@
         
         <form name="form" action="/Matricula/presentation/estudiante/datos/update" method="post" > 
             <div class="panel" style="width:30%;">
+                
                 <div class="fila encabezado">Datos</div>
                 <div class="fila">
                        <div class="etiqueta">Cedula</div>
                       <div class="campo"><%=model.getCurrent().getCedula()%></div>
                 <div class="fila">
-                       <div class="etiqueta">Email</div>
-                      <div class="campo"><%=model.getCurrent().getCedula()%></div>
+                       <div class="etiqueta">Apellido</div>
+                      <div class="campo"><%=model.getCurrent().getApellidos()%></div>
+                 <div class="fila">
+                       <div class="etiqueta">Nombre</div>
+                      <div class="campo"><%=model.getCurrent().getNombre()%></div>
+                <div class="fila">
+                       <div class="etiqueta">Telefono</div>
+                      <div class="campo"><%=model.getCurrent().getTelefono()%></div>
+                <div class="fila">
+                      <div class="etiqueta">Email</div>
+                      <div class="campo"><%=model.getCurrent().getMail()%></div>
                 </div>
                 <div class="fila">
                   <div class="etiqueta">Nombre</div>

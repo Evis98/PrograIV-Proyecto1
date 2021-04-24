@@ -16,7 +16,7 @@ public class Model{
     Profesor current;
 
     public Model() {
-        this.current = new Profesor("","",new Usuario("","",1));
+        this.current = new Profesor("","","","","",new Usuario("","",1));
     }
 
     

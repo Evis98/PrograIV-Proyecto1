@@ -17,7 +17,7 @@ import pagina.logica.Estudiante;
 import pagina.logica.Usuario;
 
 
-@WebServlet(name = "EstudianteDatosController", urlPatterns = {"/presentation/estudiante/datos/show","/presentation/estudiante/datos/update"})
+@WebServlet(name = "EstudianteDatosController", urlPatterns = {"/presentation/usuario/estudiante/datos/show","/presentation/usuario/estudiante/datos/update"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -28,10 +28,10 @@ public class Controller extends HttpServlet {
         
         String viewUrl="";     
         switch (request.getServletPath()) {
-          case "/presentation/estudiante/datos/show":
+          case "/presentation/usuario/estudiante/datos/show":
               viewUrl = this.show(request);
               break;
-          case "/presentation/estudiante/datos/update":
+          case "/presentation/usuario/estudiante/datos/update":
               viewUrl = this.update(request);
               break;              
         }          
@@ -53,7 +53,7 @@ public class Controller extends HttpServlet {
         } catch (Exception ex) { estudiante =null; }
         try {        
             model.setCurrent(estudiante);
-            return "/presentation/estudiante/datos/View.jsp";
+            return "/presentation/usuario/estudiante/datos/View.jsp";
         } catch (Exception ex) { return ""; }
     }
     
@@ -72,7 +72,7 @@ public class Controller extends HttpServlet {
             }
             else{
                 request.setAttribute("errores", errores);
-                return "/presentation/cliente/datos/View.jsp"; 
+                return "/presentation/usuario/estudiante/datos/View.jsp"; 
             }            
         }
         catch(Exception e){
@@ -109,7 +109,7 @@ public class Controller extends HttpServlet {
             Map<String,String> errores = new HashMap<>();
             request.setAttribute("errores", errores);
             errores.put("nombreFld","cedula o nombreincorrectos");
-            return "/presentation/estudiante/datos/View.jsp"; 
+            return "/presentation/usuario/estudiante/datos/View.jsp"; 
         }        
     }   
    

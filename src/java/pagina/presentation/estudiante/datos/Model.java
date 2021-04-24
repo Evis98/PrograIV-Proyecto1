@@ -15,7 +15,7 @@ public class Model{
     Estudiante current;
 
     public Model() {
-        this.current = new Estudiante("","",new Usuario("","",1));
+        this.current = new Estudiante("","","","","",new Usuario("","",1));
     }
 
     

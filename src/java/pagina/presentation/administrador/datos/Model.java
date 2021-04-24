@@ -17,7 +17,7 @@ public class Model{
     Administrador current;
 
     public Model() {
-        this.current = new Administrador("","",new Usuario("","",1));
+        this.current = new Administrador("","","",new Usuario("","",1));
     }
 
     

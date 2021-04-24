@@ -18,9 +18,20 @@ public class Profesor {
     String mail;
     String especialidad;
     Usuario usuario;
+
+    
     Grupo grupos_a_cargo;
     Curso cursos_a_cargo;
     
+    
+    public Profesor(String cedula, String apellidos,String nombre, String mail, String especialidad,Usuario usuario) {
+        this.cedula = cedula;
+        this.apellidos = apellidos;
+        this.nombre = nombre;
+        this.mail = mail;
+        this.especialidad = especialidad;
+        this.usuario = usuario;
+    }
     
     public Profesor(String cedula, String nombre, Usuario usuario) {
         this.cedula = cedula;

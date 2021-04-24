@@ -6,7 +6,7 @@
 
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="pagina.presentation.administrador.datos.Model"%>
+<%@page import="pagina.presentation.profesor.datos.Model"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,12 +24,21 @@
         <form name="form" action="/Matricula/presentation/profesor/datos/update" method="post" > 
             <div class="panel" style="width:30%;">
                 <div class="fila encabezado">Datos</div>
-                <div class="fila">
+                 <div class="fila">
                        <div class="etiqueta">Cedula</div>
                       <div class="campo"><%=model.getCurrent().getCedula()%></div>
                 <div class="fila">
-                       <div class="etiqueta">Email</div>
-                      <div class="campo"><%=model.getCurrent().getCedula()%></div>
+                       <div class="etiqueta">Apellido</div>
+                      <div class="campo"><%=model.getCurrent().getApellidos()%></div>
+                 <div class="fila">
+                       <div class="etiqueta">Nombre</div>
+                      <div class="campo"><%=model.getCurrent().getNombre()%></div>
+                <div class="fila">
+                      <div class="etiqueta">Email</div>
+                      <div class="campo"><%=model.getCurrent().getMail()%></div>
+                 <div class="fila">
+                      <div class="etiqueta">Especialidad</div>
+                      <div class="campo"><%=model.getCurrent().getEspecialidad()%></div>
                 </div>
                 <div class="fila">
                   <div class="etiqueta">Nombre</div>

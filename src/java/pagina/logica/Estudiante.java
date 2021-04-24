@@ -18,16 +18,21 @@ public class Estudiante {
     String telefono;
     String mail;
     Usuario usuario;
+
+    
     Curso historial;
     
     public Estudiante(){
     }
-    
-    public Estudiante(String cedula, String nombre, Usuario usuario) {
+    public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario) {
         this.cedula = cedula;
+        this.apellidos = apellidos;
         this.nombre = nombre;
+        this.telefono = telefono;
+        this.mail = mail;
         this.usuario = usuario;
     }
+
     
     public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario, Curso historial){
         this.cedula = cedula;

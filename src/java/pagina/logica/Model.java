@@ -41,18 +41,19 @@ public class Model {
         usuarios.put("333", new Usuario("333","333",3));
     
         estudiantes = new HashMap(); 
-        estudiantes.put("111", new Estudiante("111","J.Perez",usuarios.get("111")));
+//      
+        estudiantes.put("111", new Estudiante("111","Perez","Jose","8888","jperez@gmail.com",usuarios.get("111")));
 //        estudiantes.put("222", new Estudiante("222","B.Banner",usuarios.get("222")));
 //        estudiantes.put("333", new Estudiante("333","L.Kjero",usuarios.get("333")));
         
         profesores = new HashMap(); 
 //        profesores.put("111", new Profesor("111","J.Perez",usuarios.get("111")));
-        profesores.put("222", new Profesor("222","B.Banner",usuarios.get("222")));
+        profesores.put("222", new Profesor("222","Banner","Victor","Bbanner@gmail.com","Filosofia",usuarios.get("222")));
 //        profesores.put("333", new Profesor("333","L.Kjero",usuarios.get("333")));
 
 
         administradores = new HashMap();
-        administradores.put("333",new Administrador());
+        administradores.put("333",new Administrador("333","Kjero","Luis",usuarios.get("333")));
         
         
         
