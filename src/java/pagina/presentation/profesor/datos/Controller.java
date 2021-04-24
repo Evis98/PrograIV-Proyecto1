@@ -19,7 +19,7 @@ import pagina.logica.Profesor;
 import pagina.logica.Usuario;
 
 
-@WebServlet(name = "ProfesorDatosController", urlPatterns = {"/presentation/profesor/datos/show","/presentation/estudiante/datos/update"})
+@WebServlet(name = "ProfesorDatosController", urlPatterns = {"/presentation/profesor/datos/show","/presentation/profesor/datos/update"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
