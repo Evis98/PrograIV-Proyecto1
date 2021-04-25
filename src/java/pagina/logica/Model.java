@@ -42,10 +42,12 @@ public class Model {
         usuarios.put("111", new Usuario("111","111",1));
         usuarios.put("222", new Usuario("222","222",2));
         usuarios.put("333", new Usuario("333","333",3));
+        usuarios.put("444", new Usuario("444","444",1));
     
         estudiantes = new HashMap(); 
 //      
-        estudiantes.put("111", new Estudiante("111","Perez","Jose","8888","jperez@gmail.com",usuarios.get("111")));
+        estudiantes.put("111", new Estudiante("111","Perez","Jose","86291832","jperez@gmail.com",usuarios.get("111")));
+        estudiantes.put("444", new Estudiante("444","Hernandez","Pedro","87293619","phernand@gmail.com",usuarios.get("444")));
 //        estudiantes.put("222", new Estudiante("222","B.Banner",usuarios.get("222")));
 //        estudiantes.put("333", new Estudiante("333","L.Kjero",usuarios.get("333")));
         

@@ -26,7 +26,7 @@
             <tbody>
                         <% for(Curso c:cursos){%>
                 <tr> <td><a href="/Matricula/presentation/usuario/estudiante/cursos/show">
-                        <td><%=c.getId_curso()%> </td>
+                        <%=c.getId_curso()%> </td>
                         <td><%=c.getNombre()%> </td> 
                         <td><%=c.getTematica()%> </td> 
                         <td><%=c.getCosto()%> </td> 

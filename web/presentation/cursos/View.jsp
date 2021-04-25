@@ -29,12 +29,12 @@
             <tbody>
                         <% for(Curso c:cursos){%>
                 <tr> <td><a href="/Matricula/presentation/usuario/estudiante/cursos/show">
-                        <td><%=c.getId_curso()%> </td>
+                        <%=c.getId_curso()%> </td>
                         <td><%=c.getNombre()%> </td> 
                         <td><%=c.getTematica()%> </td> 
                         <td><%=c.getCosto()%> </td> 
                         <td><%=c.isEnOferta()%> </td> 
-                        <td><%=c.isAbierto()%></td></tr> 
+                        <td><%=c.isAbierto()%></td></tr>
 <!--                         <tr> <td><form action="/Guia/presentation/cliente/cuenta/show">
                                     <input type="hidden" name="numeroFld" value=""> 
                                     <button class="link-button">  </button> </form> </td>  
