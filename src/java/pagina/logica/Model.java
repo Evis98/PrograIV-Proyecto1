@@ -109,9 +109,9 @@ public class Model {
 //        else throw new Exception("Curso ya existe");
 //    }
 //    
-//    public List<Curso> cursosList(){
-//        return new ArrayList<>(cursos.values());
-//    }
+   public List<Curso> cursosList(){
+        return new ArrayList<>(cursos.values());
+   }
 //  
 //    public Curso cursosGet(String id_curso)throws Exception{
 //        if (cursos.get(id_curso)!=null) return cursos.get(id_curso);

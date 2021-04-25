@@ -12,7 +12,7 @@
               <li>
                 <a href="/Matricula/presentation/Index.jsp">Inicio</a>
                 <li>
-                     <a href="/Matricula/presentation/cursos/View.jsp">Cursos</a>
+                     <a href="/Matricula/presentation/cursos/show">Cursos</a>
                 </li>
                     </li>
                         <% if (usuario!=null){ %>
