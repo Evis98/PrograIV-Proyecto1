@@ -5,17 +5,22 @@
  */
 package pagina.logica;
 
+import java.util.List;
+
 /**
  *
  * @author Ivan
  */
 public class Curso {
-    int id_curso;
+    String id_curso;
     String nombre;
     String tematica;
     String costo;
     boolean enOferta;
     boolean abierto;
+    Usuario usuario;
+    
+    List<Usuario> estudiantes;
 
     public Curso() {
     }
@@ -23,20 +28,33 @@ public class Curso {
     public Curso(int id_curso) {
     }
         
-    public Curso(int id_curso, String nombre, String tematica, String costo, boolean enOferta, boolean abierto) {
+    public Curso(String id_curso, String nombre, String tematica, String costo, boolean enOferta, boolean abierto, Usuario usuario, List<Usuario> estudiantes) {
         this.id_curso = id_curso;
         this.nombre = nombre;
         this.tematica = tematica;
         this.costo = costo;
         this.enOferta = enOferta;
         this.abierto = abierto;
+        this.usuario = usuario;
+        this.estudiantes = estudiantes;
         
     }
+
+    public Curso(String id_curso, String nombre, String tematica, String costo, boolean enOferta, boolean abierto, Usuario usuario) {
+        this.id_curso = id_curso;
+        this.nombre = nombre;
+        this.tematica = tematica;
+        this.costo = costo;
+        this.enOferta = enOferta;
+        this.abierto = abierto;
+        this.usuario = usuario;
+    }
     
-    public int getId_curso() {
+    
+    public String getId_curso() {
         return id_curso;
     }
-    public void setId_curso(int id_curso) {
+    public void setId_curso(String id_curso) {
         this.id_curso = id_curso;
     }
 
@@ -74,4 +92,22 @@ public class Curso {
     public void setAbierto(boolean abierto) {
         this.abierto = abierto;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+
+    public List<Usuario> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(List<Usuario> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
+    
 }

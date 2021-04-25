@@ -5,6 +5,7 @@
  */
 package pagina.logica;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -18,9 +19,8 @@ public class Estudiante {
     String telefono;
     String mail;
     Usuario usuario;
-
     
-    Curso historial;
+    List<Curso> cursos;
     
     public Estudiante(){
     }
@@ -34,14 +34,14 @@ public class Estudiante {
     }
 
     
-    public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario, Curso historial){
+    public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario, List<Curso> cursos){
         this.cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.telefono = telefono;
         this.mail = mail;
         this.usuario = usuario;
-        this.historial = historial;
+        this.cursos = cursos;
     }
    
     public String getCedula() {
@@ -86,12 +86,15 @@ public class Estudiante {
         this.usuario = id_usuario;
     }
 
-    public Curso getHistorial() {
-        return historial;
+    public List<Curso> getCursos() {
+        return cursos;
     }
-    public void setHistorial(Curso historial) {
-        this.historial = historial;
-    }  
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
+      
         @Override
     public boolean equals(Object obj) {
         if (this == obj) {

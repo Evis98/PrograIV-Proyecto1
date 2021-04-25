@@ -14,11 +14,16 @@
                 <li>
                      <a href="/Matricula/presentation/cursos/View.jsp">Cursos</a>
                 </li>
-              </li>
+                    </li>
                         <% if (usuario!=null){ %>
                         <% if (usuario.getTipo()== 1){%>
+                    <li >
+                     <a  href="/Matricula/presentation/usuario/estudiante/datos/show">Usuario:<%=usuario.getCedula()%></a>
+  
+                  <ul>  <!--submenu --></ul>
+                </li>
                 <li >
-                  <a  href="/Matricula/presentation/usuario/estudiante/datos/show">Usuario:<%=usuario.getCedula()%></a>
+                  <a  href="/Matricula/presentation/usuario/estudiante/cursos/show">Cursos Matriculados</a>
   
                   <ul>  <!--submenu --></ul>
                 </li> 
@@ -36,6 +41,16 @@
   
                   <ul>  <!--submenu --></ul>
                 </li> 
+                <li >
+                  <a  href="/Matricula/presentation/usuario/administrador/cursos/show">Registro de nuevos cursos</a>
+  
+                  <ul>  <!--submenu --></ul>
+                </li>
+                <li >
+                  <a  href="/Matricula/presentation/usuario/administrador/profesores/show">Registro de nuevos profesores</a>
+  
+                  <ul>  <!--submenu --></ul>
+                </li>
                         <% } %>
                         
                 <li >

@@ -8,6 +8,7 @@ import pagina.logica.Usuario;
 import pagina.logica.Estudiante;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static java.util.Collections.list;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +30,9 @@ public class Model {
     HashMap<String,Estudiante> estudiantes;
     HashMap<String,Profesor> profesores;
     HashMap<String,Administrador> administradores;
+    HashMap<String,Curso> cursos;
     
+    List<Usuario> list;
 //    HashMap<String,Cuenta> cuentas;
 //    HashMap<String,List<String>> favoritas;
     
@@ -55,8 +58,10 @@ public class Model {
         administradores = new HashMap();
         administradores.put("333",new Administrador("333","Kjero","Luis",usuarios.get("333")));
         
-        
-        
+        cursos = new HashMap(); 
+        cursos.put("1-111-11", new Curso("1-111-11","Vegetales_1","Cocina", "100000", true, true, usuarios.get("111")));
+        cursos.put("2-222-22", new Curso("2-222-22","Vegetales_2","Cocina", "100000", true, true, usuarios.get("111")));
+        cursos.put("3-333-33", new Curso("3-333-33","Vegetales_3","Cocina", "100000", true, true, usuarios.get("111")));
     }
 //        cuentas = new HashMap(); 
 //        cuentas.put("1-111-11", new Cuenta("1-111-11",100.0,clientes.get("111")));
@@ -88,6 +93,46 @@ public class Model {
         if (administradores.get(usuario.getCedula())!=null) return administradores.get(usuario.getCedula());
         else throw new Exception("Administrador no existe");
     } 
+    
+    public List<Curso> cursosFind(Estudiante estudiante) throws Exception{
+        List<Curso> result = new ArrayList();
+        for(Curso c: cursos.values()){
+            if(c.getUsuario().equals(usuarios)){
+                result.add(c);
+            }
+        }
+        return result;
+    }
+//---------------Administrador Cursos---------------------------
+//    public void cursosAdd (Curso curso) throws Exception{
+//        if (cursos.get(curso.getId_curso())==null) cursos.put(curso.getId_curso(), curso);
+//        else throw new Exception("Curso ya existe");
+//    }
+//    
+//    public List<Curso> cursosList(){
+//        return new ArrayList<>(cursos.values());
+//    }
+//  
+//    public Curso cursosGet(String id_curso)throws Exception{
+//        if (cursos.get(id_curso)!=null) return cursos.get(id_curso);
+//        else throw new Exception("Curso no existe");
+//    }
+    
+//---------------Administrador Profesores---------------------------
+    public void profesoresAdd (Profesor profesor) throws Exception{
+        if (profesores.get(profesor.getCedula())==null) profesores.put(profesor.getCedula(), profesor);
+        else throw new Exception("Profesor ya existe");
+    }
+    
+    public List<Profesor> profesoresList(){
+        return new ArrayList<>(profesores.values());
+    }
+  
+    public Profesor profesoresGet(String cedula)throws Exception{
+        if (profesores.get(cedula)!=null) return profesores.get(cedula);
+        else throw new Exception("Profesor no existe");
+    }
+    
 //    public List<Cuenta> cuentasFind(Cliente cliente) throws Exception{
 //        List<Cuenta> result = new ArrayList();
 //        for(Cuenta c: cuentas.values()){
@@ -113,7 +158,8 @@ public class Model {
             estudiantes.get(estudiante.getCedula()).setNombre(estudiante.getNombre());
         }
     }
-        public void profesorUpdate(Profesor profesor) throws Exception{
+    
+    public void profesorUpdate(Profesor profesor) throws Exception{
         if (profesores.get(profesor.getCedula())==null) 
             throw new Exception("Profesor no existe");
         else{
@@ -121,13 +167,21 @@ public class Model {
         }
     }
         
-          public void administradorUpdate(Administrador administrador) throws Exception{
+    public void administradorUpdate(Administrador administrador) throws Exception{
         if (administradores.get(administrador.getCedula())==null) 
             throw new Exception("Administrador no existe");
         else{
             administradores.get(administrador.getCedula()).setNombre(administrador.getNombre());
         }
-    }    
+    }
+          
+    public void cursoUpdate(Curso curso) throws Exception{
+        if (cursos.get(curso.getId_curso())==null) 
+            throw new Exception("Estudiante no existe");
+        else{
+            cursos.get(curso.getId_curso()).setNombre(curso.getNombre());
+        }
+    }
     
     
 
