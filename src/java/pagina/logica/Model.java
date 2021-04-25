@@ -97,7 +97,7 @@ public class Model {
     public List<Curso> cursosFind(Estudiante estudiante) throws Exception{
         List<Curso> result = new ArrayList();
         for(Curso c: cursos.values()){
-            if(c.getUsuario().equals(usuarios)){
+            if(c.getUsuario().getCedula().equals(estudiante.getCedula())){
                 result.add(c);
             }
         }
