@@ -82,15 +82,25 @@ public class Curso {
     public boolean isEnOferta() {
         return enOferta;
     }
-    public void setEnOferta(boolean enOferta) {
-        this.enOferta = enOferta;
+    public void setEnOferta(String enOferta) {
+        if(enOferta == "1"){
+        this.enOferta = true;
+        }
+        if(enOferta == "2"){
+        this.enOferta = false;
+        }
     }
 
     public boolean isAbierto() {
         return abierto;
     }
-    public void setAbierto(boolean abierto) {
-        this.abierto = abierto;
+    public void setAbierto(String abierto) {
+        if(abierto == "1"){
+        this.abierto = true;
+        }
+        if(abierto == "2"){
+        this.abierto = false;
+        }
     }
 
     public Usuario getUsuario() {

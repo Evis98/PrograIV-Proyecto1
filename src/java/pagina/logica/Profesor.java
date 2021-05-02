@@ -43,6 +43,9 @@ public class Profesor {
     
     public Profesor(int id_profesor){
     }
+     public Profesor(String nombre){
+         this.nombre = nombre;
+    }
     
     public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario, Grupo grupos_a_cargo, Curso cursos_a_cargo) {
         this.cedula = cedula;

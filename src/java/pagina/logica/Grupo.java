@@ -18,7 +18,14 @@ public class Grupo {
     public Grupo() {
     }
     
-    public Grupo(int id_grupo) {
+    public Grupo(String horario, Profesor profesorDeCurso) {
+        this.horario = horario;
+        this.profesor_de_curso = profesorDeCurso;
+    }
+    
+        public Grupo(String horario, int id) {
+        this.horario = horario;
+        this.id_grupo = id;
     }
 
     public Grupo(int id_grupo, int id_curso_de_grupo, String horario, Profesor profesor_de_curso) {

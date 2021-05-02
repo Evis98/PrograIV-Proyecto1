@@ -10,10 +10,7 @@
     <div class="menu">
         <ul> 
               <li>
-                <a href="/Matricula/presentation/Index.jsp">Inicio</a>
-                <li>
-                     <a href="/Matricula/presentation/cursos/show">Cursos</a>
-                </li>
+                <a href="/Matricula/presentation/show">Inicio</a>
                     </li>
                         <% if (usuario!=null){ %>
                         <% if (usuario.getTipo()== 1){%>
@@ -23,14 +20,20 @@
                   <ul>  <!--submenu --></ul>
                 </li>
                 <li >
-                  <a  href="/Matricula/presentation/usuario/estudiante/cursos/show">Cursos Matriculados</a>
+                  <a  href="/Matricula/presentation/usuario/estudiante/cursos/show">Historial Academico</a>
   
                   <ul>  <!--submenu --></ul>
                 </li> 
                         <% } %>
                        <% if (usuario.getTipo()== 2){%>
+                
                 <li >
                   <a  href="/Matricula/presentation/usuario/profesor/datos/show">Usuario:<%=usuario.getCedula()%></a>
+  
+                  <ul>  <!--submenu --></ul>
+                </li> 
+                                <li >
+                  <a  href="/Matricula/presentation/usuario/profesor/cursos/show">Mis Cursos</a>
   
                   <ul>  <!--submenu --></ul>
                 </li> 

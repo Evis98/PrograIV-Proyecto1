@@ -3,49 +3,61 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pagina.presentation.administrador.profesores;
 
+
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Ivan
- */
-@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
-public class Controller extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+@WebServlet(name = "AdministradorProfesoresController", urlPatterns = {"/presentation/usuario/administrador/profesores/show"})
+public class Controller extends HttpServlet {
+    
+  protected void processRequest(HttpServletRequest request, 
+                                HttpServletResponse response)
+         throws ServletException, IOException {
+
+        request.setAttribute("model", new Model());
+        
+        String viewUrl="";     
+        switch (request.getServletPath()) {
+          case "/presentation/usuario/administrador/profesores/show":
+              viewUrl = this.show(request);
+              break;
+        }          
+        request.getRequestDispatcher(viewUrl).forward( request, response); 
+  }
+
+    public String show(HttpServletRequest request) {
+        return this.showAction(request);
+    }
+    
+    public String showAction(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        try {        
+            model.setProfesores(domainModel.profesoresList());
+            return "/presentation/usuario/administrador/profesores/View.jsp";
+        } catch (Exception ex) {
+            return "";
         }
     }
 
+    
+
+
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

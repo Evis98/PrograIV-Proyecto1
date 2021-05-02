@@ -1,15 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
- <%@ include file="/presentation/Head.jsp" %>
- <title>Error</title> 
-</head>
-<body>
-  
-    <%@ include file="/presentation/Header.jsp" %>
-    <div id="body" style="margin: 0 auto; width:85%; ">   
-        <h1>Ha ocurrido un error</h1>
-    </div>  
-</body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Error</title>
+    </head>
+    <body>
+        <h1>Página no encontrada</h1>
+        <a href="/Matricula/presentation/show"> Regresar </a>
+    </body>
 </html>

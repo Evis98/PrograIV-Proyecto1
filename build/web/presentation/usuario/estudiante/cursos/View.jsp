@@ -19,7 +19,7 @@
     <div style="width:50%;margin:auto;">
         <h1>Historial de Cursos del estudiante</h1>     
     
-        <table>
+        <table border = "1">
             <thead>
                 <tr> <td>ID</td> <td>Nombre</td>  <td>Tematica</td> <td>Costo</td> <td>Oferta</td> <td>Abierto</td> </tr>
             </thead>
@@ -40,8 +40,9 @@
             </tbody>
         </table>          
     </div> 
+            <br>
   
-   
+    <div class="fila encabezado"><button  style="margin-bottom: 15px">Generar PDF</button> </div>
      <%@ include file="/presentation/Footer.jsp" %>
 </body>
 </html>
