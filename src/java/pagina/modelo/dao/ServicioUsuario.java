@@ -26,7 +26,7 @@ public class ServicioUsuario {
             stmt.clearParameters();
             stmt.setInt(1, Integer.valueOf(user.getCedula()));
             stmt.setString(2, user.getClave());
-            stmt.setInt(3, user.getTipo());
+            stmt.setInt(3, user.getRol_fk());
             stmt.executeUpdate();
         } catch (IOException
                 | ClassNotFoundException
@@ -48,7 +48,7 @@ public class ServicioUsuario {
                     r = Optional.of(new Usuario(
                             rs.getString("cedula"),
                             rs.getString("clave"),
-                            rs.getInt("tipo")
+                            rs.getInt("rol_fk")
                     ));
                 }
             }
@@ -72,7 +72,7 @@ public class ServicioUsuario {
                 Usuario e = new Usuario(
                         rs.getString("cedula"),
                         rs.getString("clave"),
-                        rs.getInt("tipo")
+                        rs.getInt("rol_fk")
                 );
                 r.add(e);
             }

@@ -13,7 +13,7 @@
                 <a href="/Matricula/presentation/show">Inicio</a>
                     </li>
                         <% if (usuario!=null){ %>
-                        <% if (usuario.getTipo()== 1){%>
+                        <% if (usuario.getRol_fk()== 1){%>
                     <li >
                      <a  href="/Matricula/presentation/usuario/estudiante/datos/show">Usuario:<%=usuario.getCedula()%></a>
   
@@ -25,7 +25,7 @@
                   <ul>  <!--submenu --></ul>
                 </li> 
                         <% } %>
-                       <% if (usuario.getTipo()== 2){%>
+                       <% if (usuario.getRol_fk()== 2){%>
                 
                 <li >
                   <a  href="/Matricula/presentation/usuario/profesor/datos/show">Usuario:<%=usuario.getCedula()%></a>
@@ -38,7 +38,7 @@
                   <ul>  <!--submenu --></ul>
                 </li> 
                         <% } %>
-                    <% if (usuario.getTipo()== 3){%>
+                    <% if (usuario.getRol_fk()== 3){%>
                 <li >
                   <a  href="/Matricula/presentation/usuario/administrador/datos/show">Usuario:<%=usuario.getCedula()%></a>
   

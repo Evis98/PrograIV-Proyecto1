@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author Ivan
  */
 public class Profesor {
-    String cedula;
+    String usuario_cedula;
     String apellidos;
     String nombre;
     String mail;
@@ -25,7 +25,7 @@ public class Profesor {
     
     
     public Profesor(String cedula, String apellidos,String nombre, String mail, String especialidad,Usuario usuario) {
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.mail = mail;
@@ -34,7 +34,7 @@ public class Profesor {
     }
     
     public Profesor(String cedula, String nombre, Usuario usuario) {
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.nombre = nombre;
         this.usuario = usuario;
     }
@@ -48,7 +48,7 @@ public class Profesor {
     }
     
     public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario, Grupo grupos_a_cargo, Curso cursos_a_cargo) {
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.mail = mail;
@@ -58,11 +58,11 @@ public class Profesor {
         this.cursos_a_cargo = cursos_a_cargo;
     }
     
-    public String getCedula() {
-        return cedula;
+    public String getUsuario_cedula() {
+        return usuario_cedula;
     }
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setUsuario_cedula(String usuario_cedula) {
+        this.usuario_cedula = usuario_cedula;
     }
 
     public String getApellidos() {
@@ -125,7 +125,7 @@ public class Profesor {
             return false;
         }
         final Profesor other = (Profesor) obj;
-        if (!Objects.equals(this.cedula, other.cedula)) {
+        if (!Objects.equals(this.usuario_cedula, other.usuario_cedula)) {
             return false;
         }
         return true;

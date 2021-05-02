@@ -97,7 +97,7 @@
         </table>  
   <br><br>
  <%if(usuario!=null){%>
-  <%if(usuario.getTipo()==1){%>
+  <%if(usuario.getRol_fk()==1){%>
                             
 
         <div><button style="margin-bottom: 15px">Matricular</button> </div>

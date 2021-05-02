@@ -10,7 +10,7 @@ package pagina.logica;
  * @author Ivan
  */
 public class Administrador {
-    String cedula;
+    String usuario_cedula;
     String apellidos;
     String nombre;
     Usuario usuario;
@@ -19,23 +19,23 @@ public class Administrador {
     }
     
     public Administrador(String cedula, String apellidos, String nombre, Usuario usuario) {
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.usuario = usuario;
     }
     
      public Administrador(String cedula, String nombre, Usuario usuario) {
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.nombre = nombre;
         this.usuario = usuario;
     }
     
-    public String getCedula() {
-        return cedula;
+    public String getUsuario_cedula() {
+        return usuario_cedula;
     }
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setUsuario_cedula(String usuario_cedula) {
+        this.usuario_cedula = usuario_cedula;
     }
 
     public String getApellidos() {

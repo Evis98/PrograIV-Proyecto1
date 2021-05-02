@@ -79,7 +79,7 @@ public class Controller extends HttpServlet {
             String viewUrl = "";
             if (real.getClave() == null ? request.getParameter("clave") == null : real.getClave().equals(request.getParameter("clave"))) {
                 
-                   switch(real.getTipo()){
+                   switch(real.getRol_fk()){
                 case 1:
                     viewUrl="/presentation/Index.jsp";
                     break;

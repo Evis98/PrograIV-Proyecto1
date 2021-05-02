@@ -189,7 +189,7 @@ public class Model {
     public List<Curso> cursosFind(Estudiante estudiante) throws Exception{
         List<Curso> result = new ArrayList();
         for(Curso c: cursos.values()){
-            if(c.getUsuario().getCedula().equals(estudiante.getCedula())){
+            if(c.getUsuario().getCedula().equals(estudiante.getUsuario_cedula())){
                 result.add(c);
             }
         }
@@ -199,7 +199,7 @@ public class Model {
         public List<Curso> cursosFind(Profesor profesor) throws Exception{
         List<Curso> result = new ArrayList();
         for(Curso c: cursos.values()){
-            if(c.getUsuario().getCedula().equals(profesor.getCedula())){
+            if(c.getUsuario().getCedula().equals(profesor.getUsuario_cedula())){
                 result.add(c);
             }
         }
@@ -222,12 +222,12 @@ public class Model {
     
 //---------------Administrador Profesores---------------------------
     public void profesoresAdd (Profesor profesor) throws Exception{
-        if (profesores.get(profesor.getCedula())==null) profesores.put(profesor.getCedula(), profesor);
+        if (profesores.get(profesor.getUsuario_cedula())==null) profesores.put(profesor.getUsuario_cedula(), profesor);
         else throw new Exception("Profesor ya existe");
     }
     
       public void estudianteAdd (Estudiante estudiante) throws Exception{
-        if (estudiantes.get(estudiante.getCedula())==null) estudiantes.put(estudiante.getCedula(), estudiante);
+        if (estudiantes.get(estudiante.getUsuario_cedula())==null) estudiantes.put(estudiante.getUsuario_cedula(), estudiante);
         else throw new Exception("Estudiante ya existe");
     }
       
@@ -268,26 +268,26 @@ public class Model {
 //    }
 //
     public void estudianteUpdate(Estudiante estudiante) throws Exception{
-        if (estudiantes.get(estudiante.getCedula())==null) 
+        if (estudiantes.get(estudiante.getUsuario_cedula())==null) 
             throw new Exception("Estudiante no existe");
         else{
-            estudiantes.get(estudiante.getCedula()).setNombre(estudiante.getNombre());
+            estudiantes.get(estudiante.getUsuario_cedula()).setNombre(estudiante.getNombre());
         }
     }
     
     public void profesorUpdate(Profesor profesor) throws Exception{
-        if (profesores.get(profesor.getCedula())==null) 
+        if (profesores.get(profesor.getUsuario_cedula())==null) 
             throw new Exception("Profesor no existe");
         else{
-            profesores.get(profesor.getCedula()).setNombre(profesor.getNombre());
+            profesores.get(profesor.getUsuario_cedula()).setNombre(profesor.getNombre());
         }
     }
         
     public void administradorUpdate(Administrador administrador) throws Exception{
-        if (administradores.get(administrador.getCedula())==null) 
+        if (administradores.get(administrador.getUsuario_cedula())==null) 
             throw new Exception("Administrador no existe");
         else{
-            administradores.get(administrador.getCedula()).setNombre(administrador.getNombre());
+            administradores.get(administrador.getUsuario_cedula()).setNombre(administrador.getNombre());
         }
     }
           

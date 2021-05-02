@@ -26,7 +26,7 @@
                 <div class="fila encabezado">Datos</div>
                 <div class="fila">
                        <div class="etiqueta">Cedula</div>
-                      <div class="campo"><%=model.getCurrent().getCedula()%></div>
+                      <div class="campo"><%=model.getCurrent().getUsuario_cedula()%></div>
                 <div class="fila">
                        <div class="etiqueta">Apellido</div>
                       <div class="campo"><%=model.getCurrent().getApellidos()%></div>
@@ -62,7 +62,7 @@
 
     private Map<String,String[]> getForm(Model model){
        Map<String,String[]> values = new HashMap<>();
-       values.put("cedulaFld", new String[]{model.getCurrent().getCedula()});
+       values.put("cedulaFld", new String[]{model.getCurrent().getUsuario_cedula()});
        values.put("nombreFld", new String[]{model.getCurrent().getNombre()});
        return values;
     }

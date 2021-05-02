@@ -13,11 +13,11 @@ public class Usuario  implements java.io.Serializable {
 
      private String cedula;
      private String clave;
-     private Integer tipo;
+     private Integer rol_fk;
 
     @Override
     public String toString() {
-        return "Usuario{" + "cedula=" + cedula + ", clave=" + clave + ", tipo=" + tipo + '}';
+        return "Usuario{" + "cedula=" + cedula + ", clave=" + clave + ", tipo=" + rol_fk + '}';
     }
     
     public Usuario() {
@@ -30,7 +30,7 @@ public class Usuario  implements java.io.Serializable {
     public Usuario(String cedula, String clave, Integer tipo) {
        this.cedula = cedula;
        this.clave = clave;
-       this.tipo = tipo;
+       this.rol_fk = tipo;
       
     }
 
@@ -48,11 +48,11 @@ public class Usuario  implements java.io.Serializable {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    public Integer getTipo() {
-        return this.tipo;
+    public Integer getRol_fk() {
+        return this.rol_fk;
     }
     
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
+    public void setRol_fk(Integer rol_fk) {
+        this.rol_fk = rol_fk;
     }
 }

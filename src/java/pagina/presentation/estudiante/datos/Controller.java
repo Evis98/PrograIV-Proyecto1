@@ -64,7 +64,7 @@ public class Controller extends HttpServlet {
             Model model = (Model) request.getAttribute("model");
             HttpSession session = request.getSession(true);
             Usuario usuario = (Usuario) session.getAttribute("usuario");
-            model.getCurrent().setCedula(usuario.getCedula());
+            model.getCurrent().setUsuario_cedula(usuario.getCedula());
             Map<String,String> errores =  this.validar(request);
             if(errores.isEmpty()){
                 this.updateModel(request);          
@@ -100,7 +100,7 @@ public class Controller extends HttpServlet {
         pagina.logica.Model  domainModel = pagina.logica.Model.instance();
         HttpSession session = request.getSession(true);
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        model.getCurrent().setCedula(usuario.getCedula());
+        model.getCurrent().setUsuario_cedula(usuario.getCedula());
         model.getCurrent().setUsuario(usuario);
         try {
             domainModel.estudianteUpdate(model.getCurrent());

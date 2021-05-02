@@ -27,7 +27,7 @@
             <tbody>
                         <% for(Profesor p:profesores){%>
                 <tr> 
-                        <td><%=p.getCedula()%> </td>
+                        <td><%=p.getUsuario_cedula()%> </td>
                         <td><%=p.getApellidos()%> </td>\
                         <td><%=p.getNombre()%> </td>
                         <td><%=p.getMail()%> </td>

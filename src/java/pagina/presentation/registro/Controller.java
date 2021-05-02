@@ -82,7 +82,7 @@ public class Controller extends HttpServlet {
     void updateModel(HttpServletRequest request){
        pagina.presentation.registro.Model model= (pagina.presentation.registro.Model) request.getAttribute("model");
        
-        model.getCurrent().setCedula(request.getParameter("id"));
+        model.getCurrent().setUsuario_cedula(request.getParameter("id"));
         model.getCurrent().setNombre(request.getParameter("nombre"));
         model.getCurrent().setMail(request.getParameter("email"));
         model.getCurrent().setTelefono(request.getParameter("telefono"));
@@ -96,7 +96,7 @@ public class Controller extends HttpServlet {
         HttpSession session = request.getSession(true);
         try {
             Estudiante nuevo = model.getCurrent();
-            Usuario nuevo1 = new Usuario(nuevo.getCedula(),"555",1);
+            Usuario nuevo1 = new Usuario(nuevo.getUsuario_cedula(),"555",1);
             session.setAttribute("estudiante", nuevo);
             domainModel.estudianteAdd(nuevo);
             domainModel.usuarioAdd(nuevo1);

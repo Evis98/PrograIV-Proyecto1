@@ -51,7 +51,7 @@ public class Controller extends HttpServlet {
     
     public String showAction(HttpServletRequest request) {
       pagina.presentation.administrador.profesores.registro.Model model= (pagina.presentation.administrador.profesores.registro.Model) request.getAttribute("model");
-        model.getCurrent().setCedula("");
+        model.getCurrent().setUsuario_cedula("");
         model.getCurrent().setApellidos("");
         model.getCurrent().setNombre("");
         model.getCurrent().setMail("");
@@ -62,7 +62,7 @@ public class Controller extends HttpServlet {
        void updateModel(HttpServletRequest request){
        pagina.presentation.administrador.profesores.registro.Model model= (pagina.presentation.administrador.profesores.registro.Model) request.getAttribute("model");
        
-        model.getCurrent().setCedula(request.getParameter("cedula"));
+        model.getCurrent().setUsuario_cedula(request.getParameter("cedula"));
         model.getCurrent().setApellidos(request.getParameter("apellidos"));
         model.getCurrent().setNombre(request.getParameter("nombre"));
         model.getCurrent().setMail(request.getParameter("mail"));

@@ -13,7 +13,7 @@ import java.util.Objects;
  * @author Ivan
  */
 public class Estudiante {
-    String cedula;
+    String usuario_cedula;
     String apellidos;
     String nombre;
     String telefono;
@@ -25,7 +25,7 @@ public class Estudiante {
     public Estudiante(){
     }
     public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario) {
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -35,7 +35,7 @@ public class Estudiante {
 
     
     public Estudiante(String cedula, String apellidos, String nombre, String telefono, String mail, Usuario usuario, List<Curso> cursos){
-        this.cedula = cedula;
+        this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -44,11 +44,11 @@ public class Estudiante {
         this.cursos = cursos;
     }
    
-    public String getCedula() {
-        return cedula;
+    public String getUsuario_cedula() {
+        return usuario_cedula;
     }
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setUsuario_cedula(String usuario_cedula) {
+        this.usuario_cedula = usuario_cedula;
     }
 
     public String getApellidos() {
@@ -107,7 +107,7 @@ public class Estudiante {
             return false;
         }
         final Estudiante other = (Estudiante) obj;
-        if (!Objects.equals(this.cedula, other.cedula)) {
+        if (!Objects.equals(this.usuario_cedula, other.usuario_cedula)) {
             return false;
         }
         return true;

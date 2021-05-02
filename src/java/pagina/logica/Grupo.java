@@ -11,7 +11,7 @@ package pagina.logica;
  */
 public class Grupo {
     int id_grupo;
-    int id_curso_de_grupo;
+    int id_curso;
     String horario;
     Profesor profesor_de_curso;
 
@@ -30,7 +30,7 @@ public class Grupo {
 
     public Grupo(int id_grupo, int id_curso_de_grupo, String horario, Profesor profesor_de_curso) {
         this.id_grupo = id_grupo;
-        this.id_curso_de_grupo = id_curso_de_grupo;
+        this.id_curso = id_curso_de_grupo;
         this.horario = horario;
         this.profesor_de_curso = profesor_de_curso;
     }
@@ -43,12 +43,12 @@ public class Grupo {
         this.id_grupo = id_grupo;
     }
 
-    public int getId_curso_de_grupo() {
-        return id_curso_de_grupo;
+    public int getId_curso() {
+        return id_curso;
     }
 
-    public void setId_curso_de_grupo(int id_curso_de_grupo) {
-        this.id_curso_de_grupo = id_curso_de_grupo;
+    public void setId_curso(int id_curso) {
+        this.id_curso = id_curso;
     }
 
     public String getHorario() {
