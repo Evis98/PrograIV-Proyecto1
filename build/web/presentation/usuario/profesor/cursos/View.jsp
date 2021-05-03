@@ -9,76 +9,89 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="pagina.logica.Curso"%>
-<%
-    Model model = (Model) request.getAttribute("model");
-    List<Curso> cursos = model.getCursos();
-    List<Grupo> grupos = new ArrayList();
-    Grupo g1 = new Grupo("08:00 am", 40103);
-    Grupo g2 = new Grupo("10:00 am", 40106);
-    Grupo g3 = new Grupo("1:00 pm", 50932);
-    grupos.add(g1);
-    grupos.add(g2);
-    grupos.add(g3);
-%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+.link-button { 
+     background: none;
+     border: none;
+     color: #0066ff;
+     text-decoration: underline;
+     cursor: pointer; 
+}
+
+.table
+{
+	display:table;
+	border-collapse:separate;
+	border-spacing:2px;
+}
+.thead
+{
+	display:table-header-group;
+	color:white;
+	font-weight:bold;
+	background-color:grey;
+}
+.tbody
+{
+	display:table-row-group;
+}
+.tr
+{
+	display:table-row;
+}
+.td
+{
+	display:table-cell;
+	border:1px solid black;
+	padding:1px;
+}
+.tr.editing .td INPUT
+{
+	width:100px;
+}
+</style>
  <%@ include file="/presentation/Head.jsp" %>
  <title>Principal</title> 
 </head>
 <body >
     <%@ include file="/presentation/Header.jsp" %>
+<%
+    Model model = (Model) request.getAttribute("model");
+    List<Grupo> grupos = model.getGrupos();
 
+%>
  
-        <h1>Cursos asignados</h1>     
+        <h1>Grupos asignados</h1>     
     
-        <table border = "1">
-            <thead>
-                <tr> <td>ID</td> <td>Nombre</td>  <td>Tematica</td> <td>Costo</td> <td>Oferta</td> <td>Abierto</td> </tr>
-            </thead>
-            <tbody>
-                        <% for(Curso c:cursos){%>
-                <tr> <td><a href="/Matricula/presentation/usuario/estudiante/cursos/show">
-                        <%=c.getId_curso()%> </td>
-                        <td><%=c.getNombre()%> </td> 
-                        <td><%=c.getTematica()%> </td> 
-                        <td><%=c.getCosto()%> </td> 
-                        <td><%=c.isEnOferta()%> </td> 
-                        <td><%=c.isAbierto()%></td></tr> 
-<!--                         <tr> <td><form action="/Guia/presentation/cliente/cuenta/show">
-                                    <input type="hidden" name="numeroFld" value=""> 
-                                    <button class="link-button">  </button> </form> </td>  
-                            <td></td></tr>  -->              
-                        <%}%>
-            </tbody>
-        </table>          
- 
-                    
-                        <div><h1>Grupos </h1></div>
-                        
-                        
-                        <table id = "table" border = "1">
-            <thead>
-                <tr> <td>Horario</td> <td>NRC</td> </tr>
-            </thead>
-            <tbody>
-            
+  <!--String id_grupo, String id_curso_de_grupo, String horario, String profesor_de_curso-->
+                       
+<div class="table">
+	<div class="thead">
+		<div class="tr">
+			<div class="td">ID grupo</div>
+			<div class="td">ID curso</div>
+			<div class="td">Horario</div>
+			<div class="td">Profesor</div>
+		</div>
+	</div>
+	<div class="tbody">                
                         <% for(Grupo g:grupos){%>
-                        <tr> 
-                            
-                        <td><%=g.getHorario()%> </td>
-                        <td><%=g.getId_grupo()%> </td> 
-
-<!--                         <tr> <td><form action="/Guia/presentation/cliente/cuenta/show">
-                                    <input type="hidden" name="numeroFld" value=""> 
-                                    <button class="link-button">  </button> </form> </td>  
-                            <td></td></tr>  -->              
+		<form class="tr" action="/Matricula/presentation/grupos" method="post">
+			<div class="td"><%= g.getId_grupo()%></div>
+			<div class="td"><%= g.getId_curso() %></div>
+			<div class="td"><%=g.getHorario()%></div>
+			<div class="td"><%=g.getProfesor_de_curso()%></div>
+  
+		</form>
                         <%}%> 
-                        
-                        
-            </tbody>   
-        </table>  
+	</div>
+</div>
+ 
 
 
      <%@ include file="/presentation/Footer.jsp" %>

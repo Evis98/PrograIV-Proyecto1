@@ -12,6 +12,8 @@ package pagina.presentation.administrador.cursos.registro;
  */
 
 
+import java.util.ArrayList;
+import java.util.List;
 import pagina.logica.Curso;
 
 
@@ -21,16 +23,27 @@ import pagina.logica.Curso;
  * @author jsanchez
  */
 public class Model {
-    Curso current;
+ Curso current;
+    List<Curso> list;
 
     public Model() {
         this.reset();
     }
-    
-    public void reset(){
-        setCurrent(new Curso());        
+
+    public void reset() {
+        List<Curso> rows = new ArrayList<>();
+        this.setList(rows);
+        setCurrent(new Curso());
     }
-    
+
+    public List<Curso> getList() {
+        return list;
+    }
+
+    public void setList(List<Curso> list) {
+        this.list = list;
+    }
+
     public Curso getCurrent() {
         return current;
     }

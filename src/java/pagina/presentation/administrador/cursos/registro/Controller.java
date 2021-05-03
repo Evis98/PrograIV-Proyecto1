@@ -39,7 +39,7 @@ public class Controller extends HttpServlet {
               viewUrl = this.show(request);
               break;
           case "/presentation/usuario/administrador/cursos/registro/add":
-              viewUrl = this.add(request);
+              viewUrl = this.register(request);
               break;
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
@@ -60,35 +60,58 @@ public class Controller extends HttpServlet {
         return "/presentation/usuario/administrador/cursos/registro/View.jsp";
     }
     
+      
        void updateModel(HttpServletRequest request){
-       pagina.presentation.administrador.cursos.registro.Model model= (pagina.presentation.administrador.cursos.registro.Model) request.getAttribute("model");
+//       pagina.presentation.administrador.cursos.registro.Model model= (pagina.presentation.administrador.cursos.registro.Model) request.getAttribute("model");
+       Model model = (Model) request.getAttribute("model");
+       Curso curs = new Curso();
        
-        model.getCurrent().setId_curso(request.getParameter("id"));
-        model.getCurrent().setNombre(request.getParameter("nombre"));
-        model.getCurrent().setTematica(request.getParameter("tematica"));
-        model.getCurrent().setCosto(request.getParameter("costo"));
-        model.getCurrent().setEnOferta(request.getParameter("enOferta"));
-       model.getCurrent().setAbierto(request.getParameter("abierto"));
+       
+       curs = new Curso(
+               request.getParameter("id"),
+               request.getParameter("nombre"),
+               request.getParameter("tematica"),
+               request.getParameter("costo"),
+               Boolean.valueOf(request.getParameter("enOferta")),
+               Boolean.valueOf(request.getParameter("abierto"))
+ 
+       );
+       model.setCurrent(curs);
 
    }
-
-    private String add(HttpServletRequest request) {
-        try{
-            Map<String,String> errores =  this.validar(request);
-            if(errores.isEmpty()){
-                this.updateModel(request);          
-                return this.addAction(request);
-            }
-            else{
+    private String register(HttpServletRequest request) {
+        try {
+            Map<String, String> errores = this.validar(request);
+            if (errores.isEmpty()) {
+                this.updateModel(request);
+                return this.registerAction(request);
+            } else {
                 request.setAttribute("errores", errores);
-                return "/presentation/Index.jsp"; 
-            }            
+                return "/presentation/show";
+            }
+        } catch (Exception e) {
+            return "/presentation/show";
         }
-        catch(Exception e){
-            return "/presentation/Error.jsp";            
-        }   
     }
+
+    public String registerAction(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        Curso aux = model.getCurrent();
+        try {
+            domainModel.getServCurso().insertarCurso(aux);
+              
+                return "/presentation/show";
             
+        } catch (Exception exception) {
+            System.out.println(exception.getClass().getCanonicalName());
+            Map<String, String> errores = new HashMap<>();
+            request.setAttribute("errores", errores);
+            errores.put("cedula", "Usuario existente");
+            return "/presentation/registro/show";
+        }
+    }
+        
 
     Map<String,String> validar(HttpServletRequest request){
         Map<String,String> errores = new HashMap<>();
@@ -106,32 +129,6 @@ public class Controller extends HttpServlet {
         }
         return errores;
     }
-    
-  
-        
-    public String addAction(HttpServletRequest request) {
-        pagina.presentation.administrador.cursos.registro.Model model= (pagina.presentation.administrador.cursos.registro.Model) request.getAttribute("model");
-        pagina.logica.Model  domainModel = pagina.logica.Model.instance();
-        
-        HttpSession session = request.getSession(true);
-        try {
-            Curso nuevo = model.getCurrent();
-            session.setAttribute("curso", nuevo);
-            domainModel.cursoAdd(nuevo);
-            String viewUrl="";
-            viewUrl="/presentation/Index.jsp";
-            return viewUrl;
-        } catch (Exception ex) {
-            Map<String,String> errores = new HashMap<>();
-            request.setAttribute("errores", errores);
-            errores.put("id","Usuario o clave incorrectos");
-            errores.put("nombre","Usuario o clave incorrectos");
-            errores.put("email","Usuario o clave incorrectos");
-            errores.put("telefono","Usuario o clave incorrectos");
-            return "/presentation/registro/View.jsp"; 
-        }        
-    }   
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -8,13 +8,15 @@ package pagina.presentation.profesor.cursos;
 import java.util.ArrayList;
 import java.util.List;
 import pagina.logica.Curso;
+import pagina.logica.Grupo;
 
 /**
  *
  * @author Ivan
  */
 public class Model {
-   List<Curso> cursos;
+
+   List<Grupo> grupos;
     Curso seleccionado;
 
     public Model() {
@@ -22,18 +24,21 @@ public class Model {
     }
 
     public void reset(){ 
-        List<Curso> rows = new ArrayList<>();        
-        seleccionado=null;  
-        this.setCursos(rows);
-    }
     
-    public void setCursos(List<Curso> cursos){
-        this.cursos = cursos;    
+        List<Grupo> rows1 = new ArrayList<>();
+        seleccionado=null;  
+
+        this.setGrupos(rows1);
     }
 
-     public List<Curso> getCursos() {
-        return cursos;
+    public List<Grupo> getGrupos() {
+        return grupos;
     }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
+    
 
     public Curso getSeleccionado() {
         return seleccionado;

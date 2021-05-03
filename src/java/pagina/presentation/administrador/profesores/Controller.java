@@ -47,7 +47,7 @@ public class Controller extends HttpServlet {
         Model model = (Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         try {        
-            model.setProfesores(domainModel.profesoresList());
+            model.setProfesores(domainModel.getServProfesor().obtenerListaProfesores());
             return "/presentation/usuario/administrador/profesores/View.jsp";
         } catch (Exception ex) {
             return "";

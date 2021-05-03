@@ -5,6 +5,7 @@
  */
 package pagina.logica;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,10 +20,27 @@ public class Curso {
     boolean enOferta;
     boolean abierto;
     Usuario usuario;
-    
+    List<Grupo> grupos;
+
+    public List<Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(List<Grupo> grupos) {
+        this.grupos = grupos;
+    }
     List<Usuario> estudiantes;
 
     public Curso() {
+        this.id_curso = "";
+        this.nombre = "";
+        this.tematica = "";
+        this.costo = "";
+        this.enOferta = true;
+        this.abierto = true;
+        this.usuario = new Usuario();
+        this.estudiantes = new ArrayList();
+        this.grupos = new ArrayList();
     }
     
     public Curso(int id_curso) {
@@ -37,6 +55,7 @@ public class Curso {
         this.abierto = abierto;
         this.usuario = usuario;
         this.estudiantes = estudiantes;
+        this.grupos = new ArrayList();
         
     }
 
@@ -48,14 +67,29 @@ public class Curso {
         this.enOferta = enOferta;
         this.abierto = abierto;
         this.usuario = usuario;
+        this.grupos = new ArrayList();
     }
-    
-    
-    public String getId_curso() {
+    public Curso(String id_curso, String nombre, String tematica, String costo, boolean enOferta, boolean abierto) {
+        this.id_curso = id_curso;
+        this.nombre = nombre;
+        this.tematica = tematica;
+        this.costo = costo;
+        this.enOferta = enOferta;
+        this.abierto = abierto;
+        this.estudiantes = new ArrayList();
+        this.grupos = new ArrayList();
+    }
+     public String getId_curso() {
         return id_curso;
     }
     public void setId_curso(String id_curso) {
         this.id_curso = id_curso;
+    }
+    public Boolean getEnOferta(){
+        return enOferta;
+    }
+     public Boolean getAbierto(){
+        return abierto;
     }
 
     public String getNombre() {

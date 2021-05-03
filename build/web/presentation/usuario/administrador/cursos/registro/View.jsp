@@ -32,13 +32,13 @@
                       <div class="campo"><input placeholder="Costo" type="text" name="costo"></div>
                 <div class="fila">
                             <div class="etiqueta">En Oferta</div>
-                      <span class="radio"><input type="radio" name="enOferta" value="1"></span><span>Sí</span> 
-                      <span class="radio"><input type="radio" name="enOferta" value="2" checked></span><span>No</span> 
+                      <span class="radio"><input type="radio" name="enOferta" value="true"></span><span>Sí</span> 
+                      <span class="radio"><input type="radio" name="enOferta" value="false" checked></span><span>No</span> 
                   </div>
                 <div class="fila">
                             <div class="etiqueta">Abierta</div>
-                      <span class="radio"><input type="radio" name="abierto" value="1" checked></span><span>Sí</span> 
-                      <span class="radio"><input type="radio" name="abierto" value="2"></span><span>No</span> 
+                      <span class="radio"><input type="radio" name="abierto" value="true" checked></span><span>Sí</span> 
+                      <span class="radio"><input type="radio" name="abierto" value="false"></span><span>No</span> 
                   </div>      
                 <div class="fila encabezado"><button  style="margin-bottom: 15px"> Registrar </button> </div>
             </div>

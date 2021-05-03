@@ -4,10 +4,11 @@
   <context-root>/Matricula</context-root>
   <class-loader delegate="true"/>
   <jsp-config>
-    <property name="keepgenerated" value="true">
+    <property value="true" name="keepgenerated">
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
     <property name="compilerSourceVM" value="7"/>
     <property name="compilerTargetVM" value="7"/>
   </jsp-config>
 </glassfish-web-app>
+

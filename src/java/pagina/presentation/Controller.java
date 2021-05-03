@@ -6,15 +6,16 @@
 package pagina.presentation;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import pagina.logica.Curso;
 
 
-@WebServlet(name = "InicioController", urlPatterns = {"/presentation/show"})
+@WebServlet(name = "InicioController", urlPatterns = {"/presentation/show","/presentation/grupos"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -28,6 +29,9 @@ public class Controller extends HttpServlet {
           case "/presentation/show":
               viewUrl = this.show(request);
               break;
+          case "/presentation/grupos":
+              viewUrl = this.showG(request);
+              break;
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
@@ -35,19 +39,30 @@ public class Controller extends HttpServlet {
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-    
-    public String showAction(HttpServletRequest request) {
-        Model model = (Model) request.getAttribute("model");
-        pagina.logica.Model domainModel = pagina.logica.Model.instance();
-        HttpSession session = request.getSession(true);
- 
-        try {        
-            model.setCursos(domainModel.cursosList());
-            return "/presentation/Index.jsp";
-        } catch (Exception ex) {
-            return "";
-        }
+     public String showG(HttpServletRequest request) {
+        return this.showGrupos(request);
     }
+
+        public String showGrupos(HttpServletRequest request) {
+         pagina.presentation.Model model= (pagina.presentation.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance(); 
+        //model.setSeleccionado(domainModel.getServCurso().obtenerCurso(request.getParameter("id")).get());
+        model.setCursos(domainModel.getServCurso().obtenerListaCursos());
+        model.setGrupos(domainModel.getServGrupo().obtenerListaGrupos(request.getParameter("id")));
+         return "/presentation/Index.jsp";
+    }
+
+
+    public String showAction(HttpServletRequest request) {
+        pagina.presentation.Model model= (pagina.presentation.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        model.setCursos(domainModel.getServCurso().obtenerListaCursos());
+        model.setGrupos(new ArrayList());
+       model.setSeleccionado(new Curso());
+        return "/presentation/Index.jsp";
+    }
+
+
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -87,5 +102,4 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

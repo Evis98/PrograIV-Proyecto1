@@ -27,7 +27,7 @@ import pagina.logica.Usuario;
  *
  * @author jsanchez
  */
-@WebServlet(name = "RegistroController", urlPatterns = {"/presentation/registro/add"})
+@WebServlet(name = "RegistroController", urlPatterns = {"/presentation/registro/add","/presentation/registro/show"})
 public class Controller extends HttpServlet {
 
   protected void processRequest(HttpServletRequest request, 
@@ -39,82 +39,116 @@ public class Controller extends HttpServlet {
         String viewUrl="";
         switch(request.getServletPath()){
             case "/presentation/registro/add":
-                viewUrl=this.add(request);
-                break;              
+                viewUrl=this.register(request);
+                break;     
+            case "/presentation/registro/show":
+                viewUrl=this.show(request);
+                break;  
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
-
-    private String add(HttpServletRequest request) { 
-        try{
-            Map<String,String> errores =  this.validar(request);
-            if(errores.isEmpty()){
-                this.updateModel(request);          
-                return this.addAction(request);
-            }
-            else{
-                request.setAttribute("errores", errores);
-                return "/presentation/Index.jsp"; 
-            }            
-        }
-        catch(Exception e){
-            return "/presentation/Error.jsp";             
-        }         
+  
+  public String show(HttpServletRequest request) {
+        return this.showAction(request);
     }
+
+    public String showAction(HttpServletRequest request) {
+        pagina.presentation.registro.Model model= (pagina.presentation.registro.Model) request.getAttribute("model");
+        model.getCurrent().setUsuario_cedula("");
+        model.getCurrent().setNombre("");
+        model.getCurrent().setMail("");
+        model.getCurrent().setTelefono("");
+        return "/presentation/registro/View.jsp";
+    }
+
+
     
     Map<String,String> validar(HttpServletRequest request){
         Map<String,String> errores = new HashMap<>();
-        if (request.getParameter("id").isEmpty()){
-            errores.put("id","Cedula requerida");
+        if (request.getParameter("cedula").isEmpty()){
+            errores.put("cedula","Cedula requerida");
         }
         if (request.getParameter("nombre").isEmpty()){
-            errores.put("nombre","Clave requerida");
+            errores.put("nombre","Nombre requerida");
         }
         if (request.getParameter("email").isEmpty()){
-            errores.put("email","Cedula requerida");
+            errores.put("email","Email requerida");
         }
         if (request.getParameter("telefono").isEmpty()){
-            errores.put("telefono","Clave requerida");
+            errores.put("telefono","Telefono requerida");
         }
         return errores;
     }
     
-    void updateModel(HttpServletRequest request){
-       pagina.presentation.registro.Model model= (pagina.presentation.registro.Model) request.getAttribute("model");
-       
-        model.getCurrent().setUsuario_cedula(request.getParameter("id"));
-        model.getCurrent().setNombre(request.getParameter("nombre"));
-        model.getCurrent().setMail(request.getParameter("email"));
-        model.getCurrent().setTelefono(request.getParameter("telefono"));
+     void updateModel(HttpServletRequest request){
+      Model model = (Model) request.getAttribute("model");
+      Estudiante est = new Estudiante();
+      
+      Usuario user = new Usuario(
+              request.getParameter("cedula"),
+              "666",1
+      
+      );
+       est = new Estudiante(
+      user.getCedula(),
+              request.getParameter("apellidos"),
+              request.getParameter("nombre"),              
+              request.getParameter("telefono"),
+              request.getParameter("email"),
+              user
+      
+        
+      );
+       model.setCurrent(est);
+      
    }
-
-        
-    public String addAction(HttpServletRequest request) {
-        pagina.presentation.registro.Model model= (pagina.presentation.registro.Model) request.getAttribute("model");
-        pagina.logica.Model  domainModel = pagina.logica.Model.instance();
-        
-        HttpSession session = request.getSession(true);
+    private String register(HttpServletRequest request) {
         try {
-            Estudiante nuevo = model.getCurrent();
-            Usuario nuevo1 = new Usuario(nuevo.getUsuario_cedula(),"555",1);
-            session.setAttribute("estudiante", nuevo);
-            domainModel.estudianteAdd(nuevo);
-            domainModel.usuarioAdd(nuevo1);
-            String viewUrl="";
-            viewUrl="/presentation/Index.jsp";
-   
+            Map<String, String> errores = this.validar(request);
+            if (errores.isEmpty()) {
+                this.updateModel(request);
+                return this.registerAction(request);
+            } else {
+                request.setAttribute("errores", errores);
+                return "/presentation/registro/show";
+            }
+        } catch (Exception e) {
+            return "/presentation/registro/show";
+        }
+    }
+
+    public String registerAction(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        Estudiante aux = model.getCurrent();
+        try {
+            Usuario id = null;
             
-            return viewUrl;
-        } catch (Exception ex) {
-            Map<String,String> errores = new HashMap<>();
+            try {
+                id = domainModel.getServUsuario().obtenerUsuario(aux.getUsuario().getCedula()).get();
+            } catch (Exception ex) {
+                System.err.printf("Excepción: '%s'%n", ex.getMessage());
+            }
+
+            if (id == null ) {
+                domainModel.getServEstudiante().insertarEstudiante(aux);
+              
+                return "/presentation/show";
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception exception) {
+            System.out.println(exception.getClass().getCanonicalName());
+            Map<String, String> errores = new HashMap<>();
             request.setAttribute("errores", errores);
-            errores.put("id","Usuario o clave incorrectos");
-            errores.put("nombre","Usuario o clave incorrectos");
-            errores.put("email","Usuario o clave incorrectos");
-            errores.put("telefono","Usuario o clave incorrectos");
-            return "/presentation/registro/View.jsp"; 
-        }        
-    }   
+            errores.put("cedula", "Usuario existente");
+            return "/presentation/registro/show";
+        }
+    }
+
+
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -7,12 +7,14 @@ package pagina.presentation.profesor.cursos;
 
 import pagina.logica.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import pagina.logica.Curso;
 import pagina.logica.Profesor;
 
 
@@ -38,8 +40,9 @@ public class Controller extends HttpServlet {
         return this.showAction(request);
     }
     
+    
     public String showAction(HttpServletRequest request) {
-        Model model = (Model) request.getAttribute("model");
+        pagina.presentation.profesor.cursos.Model model= (pagina.presentation.profesor.cursos.Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         HttpSession session = request.getSession(true);
  
@@ -51,7 +54,8 @@ public class Controller extends HttpServlet {
             profesor=null;
         }
         try {        
-            model.setCursos(domainModel.cursosFind(profesor));
+            model.setGrupos(domainModel.getServGrupo().obtenerListaGruposP(usuario.getCedula()));
+            model.seleccionado = new Curso();
             return "/presentation/usuario/profesor/cursos/View.jsp";
         } catch (Exception ex) {
             return "";

@@ -5,6 +5,8 @@
  */
 package pagina.logica;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -20,8 +22,8 @@ public class Profesor {
     Usuario usuario;
 
     
-    Grupo grupos_a_cargo;
-    Curso cursos_a_cargo;
+    List<Grupo> grupos_a_cargo;
+    List<Curso> cursos_a_cargo;
     
     
     public Profesor(String cedula, String apellidos,String nombre, String mail, String especialidad,Usuario usuario) {
@@ -31,14 +33,26 @@ public class Profesor {
         this.mail = mail;
         this.especialidad = especialidad;
         this.usuario = usuario;
+        grupos_a_cargo = new ArrayList();
+        cursos_a_cargo = new ArrayList();
     }
     
     public Profesor(String cedula, String nombre, Usuario usuario) {
         this.usuario_cedula = cedula;
         this.nombre = nombre;
         this.usuario = usuario;
+                grupos_a_cargo = new ArrayList();
+        cursos_a_cargo = new ArrayList();
     }
     public Profesor() {
+        this.usuario_cedula = "";
+        this.apellidos = "";
+        this.nombre = "";
+        this.mail = "";
+        this.especialidad = "";
+        this.usuario = new Usuario();
+        grupos_a_cargo = new ArrayList();
+        cursos_a_cargo = new ArrayList();
     }
     
     public Profesor(int id_profesor){
@@ -47,7 +61,7 @@ public class Profesor {
          this.nombre = nombre;
     }
     
-    public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario, Grupo grupos_a_cargo, Curso cursos_a_cargo) {
+    public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario, List<Grupo> grupos_a_cargo, List<Curso> cursos_a_cargo) {
         this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
@@ -57,7 +71,10 @@ public class Profesor {
         this.grupos_a_cargo = grupos_a_cargo;
         this.cursos_a_cargo = cursos_a_cargo;
     }
-    
+ public Usuario getUsuario() {
+        return usuario;
+    }
+
     public String getUsuario_cedula() {
         return usuario_cedula;
     }
@@ -100,19 +117,23 @@ public class Profesor {
         this.usuario = usuario;
     }
 
-    public Grupo getGrupos_a_cargo() {
+    public List<Grupo> getGrupos_a_cargo() {
         return grupos_a_cargo;
     }
-    public void setGrupos_a_cargo(Grupo grupos_a_cargo) {
+
+    public void setGrupos_a_cargo(List<Grupo> grupos_a_cargo) {
         this.grupos_a_cargo = grupos_a_cargo;
     }
 
-    public Curso getCursos_a_cargo() {
+    public List<Curso> getCursos_a_cargo() {
         return cursos_a_cargo;
     }
-    public void setCursos_a_cargo(Curso cursos_a_cargo) {
+
+    public void setCursos_a_cargo(List<Curso> cursos_a_cargo) {
         this.cursos_a_cargo = cursos_a_cargo;
     }
+
+
      @Override
     public boolean equals(Object obj) {
         if (this == obj) {

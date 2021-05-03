@@ -11,6 +11,11 @@ import java.util.Arrays;
 import static java.util.Collections.list;
 import java.util.HashMap;
 import java.util.List;
+import pagina.modelo.dao.ServicioAdministrador;
+import pagina.modelo.dao.ServicioCurso;
+import pagina.modelo.dao.ServicioEstudiante;
+import pagina.modelo.dao.ServicioGrupo;
+import pagina.modelo.dao.ServicioProfesor;
 import pagina.modelo.dao.ServicioUsuario;
 
 /**
@@ -18,8 +23,14 @@ import pagina.modelo.dao.ServicioUsuario;
  * @author PC
  */
 public class Model {
+    
+     private final ServicioUsuario servUsuario;
+    private final ServicioEstudiante servEstudiante;
+    private final ServicioProfesor servProfesor;
+    private final ServicioAdministrador servAdministrador; 
+    private final ServicioCurso servCurso; 
+    private final ServicioGrupo servGrupo;
      private static Model uniqueInstance;
-    private final ServicioUsuario servUsuario;
         HashMap<String,Usuario> usuarios;
     HashMap<String,Grupo> grupos;
     HashMap<String,Estudiante> estudiantes;
@@ -46,7 +57,12 @@ public class Model {
     }
 
     public Model() {
-        this.servUsuario = new ServicioUsuario();
+         this.servUsuario = new ServicioUsuario();
+        this.servEstudiante = new ServicioEstudiante();
+        this.servProfesor = new ServicioProfesor();
+        this.servAdministrador = new ServicioAdministrador();
+        this.servCurso = new ServicioCurso();
+        this.servGrupo = new ServicioGrupo();
         usuarios = new HashMap();
         usuarios.put("111", new Usuario("111","111",1));
         usuarios.put("222", new Usuario("222","222",2));
@@ -76,97 +92,54 @@ public class Model {
         cursos.put("4-444-44", new Curso("4-444-44","Frutas_1","Cocina", "100000", true, true, usuarios.get("111")));
         cursos.put("5-555-55", new Curso("5-555-55","Frutas_2","Cocina", "100000", true, true, usuarios.get("111")));
         cursos.put("6-666-66", new Curso("6-666-66","Frutas_3","Cocina", "100000", true, true, usuarios.get("111")));
+        
+         List<Grupo> grupos1 = new ArrayList();
+        /* Grupo g1 = new Grupo("08:00 am", new Profesor("Jose Sanchez"));
+         Grupo g2 = new Grupo("10:00 am", new Profesor("Jose Sanchez"));
+         Grupo g3 = new Grupo("1:00 pm", new Profesor("Georges"));
+        grupos1.add(g1);
+        grupos1.add(g2);
+        grupos1.add(g3);*/
+        
+        cursos.get("1-111-11").grupos= grupos1;
+        
+          List<Grupo> grupos2 = new ArrayList();
+      /*   Grupo g4 = new Grupo("08:00 am", new Profesor("Majid"));
+         Grupo g5 = new Grupo("10:00 am", new Profesor("Majid"));
+         Grupo g6 = new Grupo("1:00 pm", new Profesor("Jose"));
+        grupos2.add(g4);
+        grupos2.add(g5);
+        grupos2.add(g6);*/
+        
+        cursos.get("2-222-22").grupos= grupos2;
+        
     }
 
-
-    public ServicioUsuario getServUsuario() {
+    public ServicioGrupo getServGrupo() {
+        return servGrupo;
+    }
+    
+public ServicioUsuario getServUsuario() {
         return servUsuario;
     }
 
-/*
-    private static Model uniqueInstance;
-    
-    public static Model instance(){
-        if (uniqueInstance == null){
-            uniqueInstance = new Model();
-        }
-        return uniqueInstance; 
+    public ServicioEstudiante getServEstudiante() {
+        return servEstudiante;
     }
 
-    private final ServicioUsuario servUsuario;
-
-
-    public static Model getUniqueInstance() {
-        return uniqueInstance;
+    public ServicioProfesor getServProfesor() {
+        return servProfesor;
     }
 
-    public static void setUniqueInstance(Model uniqueInstance) {
-        Model.uniqueInstance = uniqueInstance;
+    public ServicioAdministrador getServAdministrador() {
+        return servAdministrador;
     }
 
-
-
-
-    public ServicioUsuario getServUsuario() {
-        return servUsuario;
+    public ServicioCurso getServCurso() {
+        return servCurso;
     }
-    
-    HashMap<String,Usuario> usuarios;
-    HashMap<String,Grupo> grupos;
-    HashMap<String,Estudiante> estudiantes;
-    HashMap<String,Profesor> profesores;
-    HashMap<String,Administrador> administradores;
-    HashMap<String,Curso> cursos;
-    
-    List<Usuario> list;
-//    HashMap<String,Cuenta> cuentas;
-//    HashMap<String,List<String>> favoritas;
-    
-    
-    public Model(){
-        this.servUsuario = new ServicioUsuario();
-        usuarios = new HashMap();
-        usuarios.put("111", new Usuario("111","111",1));
-        usuarios.put("222", new Usuario("222","222",2));
-        usuarios.put("333", new Usuario("333","333",3));
-        usuarios.put("444", new Usuario("444","444",1));
-    
-        estudiantes = new HashMap(); 
-//      
-        estudiantes.put("111", new Estudiante("111","Perez","Jose","86291832","jperez@gmail.com",usuarios.get("111")));
-        estudiantes.put("444", new Estudiante("444","Hernandez","Pedro","87293619","phernand@gmail.com",usuarios.get("444")));
-//        estudiantes.put("222", new Estudiante("222","B.Banner",usuarios.get("222")));
-//        estudiantes.put("333", new Estudiante("333","L.Kjero",usuarios.get("333")));
-        
-        profesores = new HashMap(); 
-//        profesores.put("111", new Profesor("111","J.Perez",usuarios.get("111")));
-        profesores.put("222", new Profesor("222","Banner","Victor","Bbanner@gmail.com","Filosofia",usuarios.get("222")));
-//        profesores.put("333", new Profesor("333","L.Kjero",usuarios.get("333")));
 
-
-        administradores = new HashMap();
-        administradores.put("333",new Administrador("333","Kjero","Luis",usuarios.get("333")));
-        
-        cursos = new HashMap(); 
-        cursos.put("1-111-11", new Curso("1-111-11","Vegetales_1","Cocina", "100000", true, true, usuarios.get("111")));
-        cursos.put("2-222-22", new Curso("2-222-22","Vegetales_2","Cocina", "100000", true, true, usuarios.get("111")));
-        cursos.put("3-333-33", new Curso("3-333-33","Vegetales_3","Cocina", "100000", true, true, usuarios.get("111")));
-        cursos.put("4-444-44", new Curso("4-444-44","Frutas_1","Cocina", "100000", true, true, usuarios.get("111")));
-        cursos.put("5-555-55", new Curso("5-555-55","Frutas_2","Cocina", "100000", true, true, usuarios.get("111")));
-        cursos.put("6-666-66", new Curso("6-666-66","Frutas_3","Cocina", "100000", true, true, usuarios.get("111")));
-    }
-//        cuentas = new HashMap(); 
-//        cuentas.put("1-111-11", new Cuenta("1-111-11",100.0,clientes.get("111")));
-//        cuentas.put("1-222-22", new Cuenta("1-222-22",200.0,clientes.get("111")));        
-//        cuentas.put("2-111-11", new Cuenta("2-111-11",150.0,clientes.get("222")));
-//
-//        //HashMap<String,List<String>> favoritas;
-//        favoritas = new HashMap(); 
-//        favoritas.put("111", Arrays.asList(new String[]{"2-111-11"}));
-//        favoritas.put("222", Arrays.asList(new String[]{"1-111-11","1-222-22"}));
-//    }**/
-
-    public Usuario usuarioFind(String cedula,String clave) throws Exception{
+   public Usuario usuarioFind(String cedula,String clave) throws Exception{
         if (usuarios.get(cedula)!=null) return usuarios.get(cedula);
         else throw new Exception("Usuario no existe");
     }
@@ -175,7 +148,16 @@ public class Model {
         if (estudiantes.get(usuario.getCedula())!=null) return estudiantes.get(usuario.getCedula());
         else throw new Exception("Estudiante no existe");
     }
-
+    public Curso getCurso(String id) {
+        if (cursos.get(id)!=null) return cursos.get(id);
+        else{
+        return new Curso();
+        }
+    }
+    
+    
+        
+    
     public Profesor profesorFind(Usuario usuario) throws Exception{
         if (profesores.get(usuario.getCedula())!=null) return profesores.get(usuario.getCedula());
         else throw new Exception("Profesor no existe");
@@ -306,5 +288,7 @@ public class Model {
 //        if (cuentas.get(numero)!=null) return cuentas.get(numero);
 //        else throw new Exception("Cuenta no existe");
 //    }  
+
 }
+
 

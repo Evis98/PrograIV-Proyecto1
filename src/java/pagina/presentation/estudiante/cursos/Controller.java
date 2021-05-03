@@ -46,7 +46,7 @@ public class Controller extends HttpServlet {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         Estudiante estudiante;
         try {
-            estudiante = domainModel.estudianteFind(usuario);
+            estudiante = domainModel.getServEstudiante().obtenerEstudiante(usuario.getCedula()).get();
         } catch (Exception ex) {
             estudiante=null;
         }

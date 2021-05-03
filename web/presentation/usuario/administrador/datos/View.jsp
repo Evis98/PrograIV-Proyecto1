@@ -27,20 +27,16 @@
                 <div class="fila">
                        <div class="etiqueta">Cedula</div>
                       <div class="campo"><%=model.getCurrent().getUsuario_cedula()%></div>
+                                            </div>
                 <div class="fila">
                        <div class="etiqueta">Apellido</div>
                       <div class="campo"><%=model.getCurrent().getApellidos()%></div>
+                                            </div>
                  <div class="fila">
                        <div class="etiqueta">Nombre</div>
-                      <div class="campo"><%=model.getCurrent().getNombre()%></div>
-               
-                </div>
-                <div class="fila">
-                  <div class="etiqueta">Nombre</div>
-                  <div class="campo"><input class="<%=erroneo("nombreFld",errores)%>" placeholder="Nombre del usuario" type="text" name="nombreFld" value="<%=form.get("nombreFld")[0]%>" title="<%=title("nombreFld",errores)%>"></div>
-                </div>
-                <div class="fila encabezado"><button  style="margin-bottom: 15px">Actualzar</button> </div>
+                      <div class="campo"><%=model.getCurrent().getNombre()%></div>                
             </div>
+                                  </div>
         </form>
     <%@ include file="/presentation/Footer.jsp" %>                  
 </body>

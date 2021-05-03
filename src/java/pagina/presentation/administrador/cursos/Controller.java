@@ -25,7 +25,7 @@ import pagina.logica.Curso;
 
 
 
-@WebServlet(name = "AdministradorCursosController", urlPatterns = {"/presentation/usuario/administrador/cursos/show"})
+@WebServlet(name = "AdministradorCursosController", urlPatterns = {"/presentation/usuario/administrador/cursos/show","/presentation/usuario/administrador/cursos/grupos"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -39,10 +39,28 @@ public class Controller extends HttpServlet {
           case "/presentation/usuario/administrador/cursos/show":
               viewUrl = this.show(request);
               break;
+          case "/presentation/usuario/administrador/cursos/grupos":
+              viewUrl = this.showG(request);
+              break;
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
-
+ public String showG(HttpServletRequest request) {
+        return this.showGrupos(request);
+    }
+        public String showGrupos(HttpServletRequest request) {
+         pagina.presentation.administrador.cursos.Model model= (pagina.presentation.administrador.cursos.Model) request.getAttribute("model");
+         
+        pagina.logica.Model domainModel = pagina.logica.Model.instance(); 
+        //model.setSeleccionado(domainModel.getServCurso().obtenerCurso(request.getParameter("id")).get());
+        model.setCursos(domainModel.getServCurso().obtenerListaCursos());
+        model.setGrupos(domainModel.getServGrupo().obtenerListaGrupos(request.getParameter("id")));
+        /*pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        model.setSeleccionado(domainModel.getCurso(request.getParameter("id")));
+        model.setCursos(domainModel.cursosList());
+        model.setGrupos(model.getSeleccionado().getGrupos());*/
+         return "/presentation/usuario/administrador/cursos/View.jsp";
+    }
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
@@ -51,7 +69,7 @@ public class Controller extends HttpServlet {
         Model model = (Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         try {        
-            model.setCursos(domainModel.cursosList());
+            model.setCursos(domainModel.getServCurso().obtenerListaCursos());
             return "/presentation/usuario/administrador/cursos/View.jsp";
         } catch (Exception ex) {
             return "";

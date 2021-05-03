@@ -17,10 +17,14 @@
         <form name="form" action="/Matricula/presentation/usuario/administrador/profesores/registro/add" method="post" > 
             <div class="panel" style="width:30%;">
                 
-                <div class="fila encabezado">Nuevo curso</div>
+                <div class="fila encabezado">Nuevo Profesor</div>
                 <div class="fila">
                             <div class="etiqueta">Cedula</div>
                       <div class="campo"><input placeholder="Cédula" type="text" name="cedula"></div>
+                <div class="fila">
+                     <div class="fila">
+                            <div class="etiqueta">Clave</div>
+                      <div class="campo"><input placeholder="Clave" type="text" name="clave"></div>
                 <div class="fila">
                             <div class="etiqueta">Apellidos</div>
                       <div class="campo"><input placeholder="Apellidos" type="text" name="apellidos"></div>

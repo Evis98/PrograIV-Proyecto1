@@ -22,7 +22,7 @@ import pagina.logica.Administrador;
 import pagina.logica.Usuario;
 
 
-@WebServlet(name = "AministradorDatosController", urlPatterns = {"/presentation/usuario/administrador/datos/show","/presentation/usuario/administrador/datos/update"})
+@WebServlet(name = "AministradorDatosController", urlPatterns = {"/presentation/usuario/administrador/datos/show"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -35,10 +35,7 @@ public class Controller extends HttpServlet {
         switch (request.getServletPath()) {
           case "/presentation/usuario/administrador/datos/show":
               viewUrl = this.show(request);
-              break;
-          case "/presentation/usuario/administrador/datos/update":
-              viewUrl = this.update(request);
-              break;              
+              break;            
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
@@ -54,7 +51,7 @@ public class Controller extends HttpServlet {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         Administrador administrador;
         try {
-            administrador = domainModel.administradorFind(usuario);
+            administrador = domainModel.getServAdministrador().obtenerAdministrador(usuario.getCedula()).get();
         } catch (Exception ex) { administrador =null; }
         try {        
             model.setCurrent(administrador);
@@ -64,26 +61,7 @@ public class Controller extends HttpServlet {
     
     
     
-    private String update(HttpServletRequest request) { 
-        try{
-            pagina.presentation.administrador.datos.Model model = (pagina.presentation.administrador.datos.Model) request.getAttribute("model");
-            HttpSession session = request.getSession(true);
-            Usuario usuario = (Usuario) session.getAttribute("usuario");
-            model.getCurrent().setUsuario_cedula(usuario.getCedula());
-            Map<String,String> errores =  this.validar(request);
-            if(errores.isEmpty()){
-                this.updateModel(request);          
-                return this.updateAction(request);
-            }
-            else{
-                request.setAttribute("errores", errores);
-                return "/presentation/usuario/administrador/datos/View.jsp"; 
-            }            
-        }
-        catch(Exception e){
-            return "/presentation/Error.jsp";             
-        }         
-    }
+
     
     Map<String,String> validar(HttpServletRequest request){
         Map<String,String> errores = new HashMap<>();

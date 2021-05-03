@@ -10,36 +10,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+    
+    <style>
+.link-button { 
+     background: none;
+     border: none;
+     color: #0066ff;
+     text-decoration: underline;
+     cursor: pointer; 
+}
+
+.table
+{
+	display:table;
+	border-collapse:separate;
+	border-spacing:2px;
+}
+.thead
+{
+	display:table-header-group;
+	color:white;
+	font-weight:bold;
+	background-color:grey;
+}
+.tbody
+{
+	display:table-row-group;
+}
+.tr
+{
+	display:table-row;
+}
+.td
+{
+	display:table-cell;
+	border:1px solid black;
+	padding:1px;
+}
+.tr.editing .td INPUT
+{
+	width:100px;
+}
+</style>
  <%@ include file="/presentation/Head.jsp" %>
  <title>Principal</title> 
 </head>
 <body >
     <%@ include file="/presentation/Header.jsp" %>
 
-    <div style="width:50%;margin:auto;">
+
         <h1>Historial de Cursos del estudiante</h1>     
-    
-        <table border = "1">
-            <thead>
-                <tr> <td>ID</td> <td>Nombre</td>  <td>Tematica</td> <td>Costo</td> <td>Oferta</td> <td>Abierto</td> </tr>
-            </thead>
-            <tbody>
+        
+        
+        <div class="table">
+	<div class="thead">
+		<div class="tr">
+			<div class="td">ID</div>
+			<div class="td">Nombre</div>
+			<div class="td">Tematica</div>
+			<div class="td">Costo</div>
+			<div class="td">Oferta</div>
+                        <div class="td">Abierto</div>
+		</div>
+	</div>
+	<div class="tbody">                
                         <% for(Curso c:cursos){%>
-                <tr> <td><a href="/Matricula/presentation/usuario/estudiante/cursos/show">
-                        <%=c.getId_curso()%> </td>
-                        <td><%=c.getNombre()%> </td> 
-                        <td><%=c.getTematica()%> </td> 
-                        <td><%=c.getCosto()%> </td> 
-                        <td><%=c.isEnOferta()%> </td> 
-                        <td><%=c.isAbierto()%></td></tr> 
-<!--                         <tr> <td><form action="/Guia/presentation/cliente/cuenta/show">
-                                    <input type="hidden" name="numeroFld" value=""> 
-                                    <button class="link-button">  </button> </form> </td>  
-                            <td></td></tr>  -->              
-                        <%}%>
-            </tbody>
-        </table>          
-    </div> 
+		<form class="tr" action="/Matricula/presentation/grupos" method="post">
+			<div class="td"><%=c.getId_curso()%></div>
+			<div class="td"><%=c.getNombre()%></div>
+			<div class="td"><%=c.getTematica()%></div>
+			<div class="td"><%=c.getCosto()%></div>
+                        <div class="td"><%=c.isEnOferta()%></div>
+                        <div class="td"><%=c.isEnOferta()%></div>
+		</form>
+                        <%}%> 
+		
+	</div>
+</div>
+           
+
             <br>
   
     <div class="fila encabezado"><button  style="margin-bottom: 15px">Generar PDF</button> </div>
