@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.presentation.administrador.profesores;
 
 import java.util.ArrayList;
@@ -10,20 +5,25 @@ import java.util.List;
 import pagina.logica.Profesor;
 
 /**
- *
- * @author Ivan
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class Model {
-   List<Profesor> profesores;
+
+    List<Profesor> profesores;
     Profesor seleccionado;
 
     public Model() {
         this.reset();
     }
 
-    public void reset(){ 
-        List<Profesor> rows = new ArrayList<>();        
-        seleccionado=null;  
+    public void reset() {
+        List<Profesor> rows = new ArrayList<>();
+        seleccionado = null;
         this.setProfesores(rows);
     }
 
@@ -43,4 +43,3 @@ public class Model {
         this.seleccionado = seleccionado;
     }
 }
-    

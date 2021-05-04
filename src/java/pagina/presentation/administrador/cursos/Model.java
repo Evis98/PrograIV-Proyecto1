@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.presentation.administrador.cursos;
 
 import java.util.ArrayList;
@@ -11,11 +6,16 @@ import pagina.logica.Curso;
 import pagina.logica.Grupo;
 
 /**
- *
- * @author Ivan
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class Model {
-   List<Curso> cursos;
+
+    List<Curso> cursos;
     Curso seleccionado;
     List<Grupo> grupos;
 
@@ -23,19 +23,19 @@ public class Model {
         this.reset();
     }
 
-    public void reset(){ 
-        List<Curso> rows = new ArrayList<>(); 
-        List<Grupo> rows1 = new ArrayList<>();   
-        seleccionado=null;  
+    public void reset() {
+        List<Curso> rows = new ArrayList<>();
+        List<Grupo> rows1 = new ArrayList<>();
+        seleccionado = null;
         this.setCursos(rows);
         this.setGrupos(rows1);
     }
-    
-    public void setCursos(List<Curso> cursos){
-        this.cursos = cursos;    
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
-     public List<Curso> getCursos() {
+    public List<Curso> getCursos() {
         return cursos;
     }
 
@@ -53,5 +53,5 @@ public class Model {
 
     public void setSeleccionado(Curso seleccionado) {
         this.seleccionado = seleccionado;
-    } 
+    }
 }

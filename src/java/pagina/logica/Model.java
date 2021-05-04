@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.logica;
+
 import pagina.logica.Usuario;
 import pagina.logica.Estudiante;
 import java.util.ArrayList;
@@ -20,21 +16,20 @@ import pagina.modelo.dao.ServicioProfesor;
 import pagina.modelo.dao.ServicioUsuario;
 
 /**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
  *
- * @author PC
  */
 public class Model {
-    
-     private final ServicioUsuario servUsuario;
+
+    private final ServicioUsuario servUsuario;
     private final ServicioEstudiante servEstudiante;
     private final ServicioProfesor servProfesor;
-    private final ServicioAdministrador servAdministrador; 
-    private final ServicioCurso servCurso; 
+    private final ServicioAdministrador servAdministrador;
+    private final ServicioCurso servCurso;
     private final ServicioGrupo servGrupo;
-     private static Model uniqueInstance;
-     private final ServicioNotas servNotas;
-
-
+    private static Model uniqueInstance;
+    private final ServicioNotas servNotas;
 
     public static Model getUniqueInstance() {
         return uniqueInstance;
@@ -52,7 +47,7 @@ public class Model {
     }
 
     public Model() {
-         this.servUsuario = new ServicioUsuario();
+        this.servUsuario = new ServicioUsuario();
         this.servEstudiante = new ServicioEstudiante();
         this.servProfesor = new ServicioProfesor();
         this.servAdministrador = new ServicioAdministrador();
@@ -60,7 +55,6 @@ public class Model {
         this.servGrupo = new ServicioGrupo();
         this.servNotas = new ServicioNotas();
 
-        
     }
 
     public ServicioNotas getServNotas() {
@@ -70,8 +64,8 @@ public class Model {
     public ServicioGrupo getServGrupo() {
         return servGrupo;
     }
-    
-public ServicioUsuario getServUsuario() {
+
+    public ServicioUsuario getServUsuario() {
         return servUsuario;
     }
 
@@ -91,7 +85,4 @@ public ServicioUsuario getServUsuario() {
         return servCurso;
     }
 
-   
 }
-
-

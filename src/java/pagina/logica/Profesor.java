@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.logica;
 
 import java.util.ArrayList;
@@ -10,10 +5,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
  *
- * @author Ivan
  */
 public class Profesor {
+
     String usuario_cedula;
     String apellidos;
     String nombre;
@@ -21,12 +18,10 @@ public class Profesor {
     String especialidad;
     Usuario usuario;
 
-    
     List<Grupo> grupos_a_cargo;
     List<Curso> cursos_a_cargo;
-    
-    
-    public Profesor(String cedula, String apellidos,String nombre, String mail, String especialidad,Usuario usuario) {
+
+    public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario) {
         this.usuario_cedula = cedula;
         this.apellidos = apellidos;
         this.nombre = nombre;
@@ -36,14 +31,15 @@ public class Profesor {
         grupos_a_cargo = new ArrayList();
         cursos_a_cargo = new ArrayList();
     }
-    
+
     public Profesor(String cedula, String nombre, Usuario usuario) {
         this.usuario_cedula = cedula;
         this.nombre = nombre;
         this.usuario = usuario;
-                grupos_a_cargo = new ArrayList();
+        grupos_a_cargo = new ArrayList();
         cursos_a_cargo = new ArrayList();
     }
+
     public Profesor() {
         this.usuario_cedula = "";
         this.apellidos = "";
@@ -54,13 +50,14 @@ public class Profesor {
         grupos_a_cargo = new ArrayList();
         cursos_a_cargo = new ArrayList();
     }
-    
-    public Profesor(int id_profesor){
+
+    public Profesor(int id_profesor) {
     }
-     public Profesor(String nombre){
-         this.nombre = nombre;
+
+    public Profesor(String nombre) {
+        this.nombre = nombre;
     }
-    
+
     public Profesor(String cedula, String apellidos, String nombre, String mail, String especialidad, Usuario usuario, List<Grupo> grupos_a_cargo, List<Curso> cursos_a_cargo) {
         this.usuario_cedula = cedula;
         this.apellidos = apellidos;
@@ -71,13 +68,15 @@ public class Profesor {
         this.grupos_a_cargo = grupos_a_cargo;
         this.cursos_a_cargo = cursos_a_cargo;
     }
- public Usuario getUsuario() {
+
+    public Usuario getUsuario() {
         return usuario;
     }
 
     public String getUsuario_cedula() {
         return usuario_cedula;
     }
+
     public void setUsuario_cedula(String usuario_cedula) {
         this.usuario_cedula = usuario_cedula;
     }
@@ -85,13 +84,15 @@ public class Profesor {
     public String getApellidos() {
         return apellidos;
     }
+
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -99,6 +100,7 @@ public class Profesor {
     public String getMail() {
         return mail;
     }
+
     public void setMail(String mail) {
         this.mail = mail;
     }
@@ -106,6 +108,7 @@ public class Profesor {
     public String getEspecialidad() {
         return especialidad;
     }
+
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
@@ -113,6 +116,7 @@ public class Profesor {
     public Usuario usuario() {
         return usuario;
     }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
@@ -133,8 +137,7 @@ public class Profesor {
         this.cursos_a_cargo = cursos_a_cargo;
     }
 
-
-     @Override
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

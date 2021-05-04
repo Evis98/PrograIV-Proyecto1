@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.modelo.dao;
 
 import java.io.IOException;
@@ -20,9 +15,14 @@ import pagina.logica.Curso;
 import pagina.logica.Grupo;
 
 /**
- *
- * @author PC
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
+
 public class ServicioGrupo {
     
     
@@ -34,7 +34,7 @@ public class ServicioGrupo {
 
           
 
-            // Creacion del Proveedor
+            // Creacion del Grupo
             stmt.clearParameters();
             stmt.setString(1, gru.getId_grupo());
             stmt.setString(2, gru.getId_curso());

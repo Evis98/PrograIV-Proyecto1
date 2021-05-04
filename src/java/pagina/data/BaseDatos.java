@@ -1,6 +1,13 @@
 package pagina.data;
 
-
+/**
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
+ */
 
 import cr.ac.database.managers.DBManager;
 import java.io.IOException;

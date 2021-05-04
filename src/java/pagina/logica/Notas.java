@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.logica;
 
 /**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
  *
- * @author PC
  */
 public class Notas {
 
@@ -19,12 +15,12 @@ public class Notas {
     String horario;
 
     public Notas() {
-  id_estudiante = "";
-   id_grupo = "";
-   nota = "";
-    id_profesor = "";
-    id_curso = "";
-    horario = "";
+        id_estudiante = "";
+        id_grupo = "";
+        nota = "";
+        id_profesor = "";
+        id_curso = "";
+        horario = "";
     }
 
     public Notas(String id_estudiante, String id_grupo, String nota, String id_profesor, String id_curso, String horario) {
@@ -51,7 +47,6 @@ public class Notas {
     public void setHorario(String horario) {
         this.horario = horario;
     }
-
 
     public String getId_estudiante() {
         return id_estudiante;

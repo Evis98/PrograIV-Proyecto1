@@ -14,51 +14,54 @@ import pagina.logica.Grupo;
 import pagina.logica.Notas;
 import pagina.logica.Profesor;
 
-
-@WebServlet(name = "ProfesorCursosController", urlPatterns = {"/presentation/usuario/profesor/cursos/show","/presentation/usuario/profesor/cursos/notas","/presentation/usuario/profesor/cursos/modificar"})
+/**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
+ *
+ */
+@WebServlet(name = "ProfesorCursosController", urlPatterns = {"/presentation/usuario/profesor/cursos/show", "/presentation/usuario/profesor/cursos/notas", "/presentation/usuario/profesor/cursos/modificar"})
 public class Controller extends HttpServlet {
-    
-  protected void processRequest(HttpServletRequest request, 
-                                HttpServletResponse response)
-         throws ServletException, IOException {
+
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
 
         request.setAttribute("model", new Model());
-        
-        String viewUrl="";     
+
+        String viewUrl = "";
         switch (request.getServletPath()) {
-          case "/presentation/usuario/profesor/cursos/show":
-              viewUrl = this.show(request);
-              break;
-             
-        case "/presentation/usuario/profesor/cursos/notas":
-              viewUrl = this.showG(request);
-              break;
-              
-        case "/presentation/usuario/profesor/cursos/modificar":
-              viewUrl = this.update(request);
-              break;
-        }      
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
-  }
+            case "/presentation/usuario/profesor/cursos/show":
+                viewUrl = this.show(request);
+                break;
+
+            case "/presentation/usuario/profesor/cursos/notas":
+                viewUrl = this.showG(request);
+                break;
+
+            case "/presentation/usuario/profesor/cursos/modificar":
+                viewUrl = this.update(request);
+                break;
+        }
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+    }
 
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-    
-    
+
     public String showAction(HttpServletRequest request) {
-        pagina.presentation.profesor.cursos.Model model= (pagina.presentation.profesor.cursos.Model) request.getAttribute("model");
+        pagina.presentation.profesor.cursos.Model model = (pagina.presentation.profesor.cursos.Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         HttpSession session = request.getSession(true);
- 
+
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         Profesor profesor;
         try {
 
         } catch (Exception ex) {
-            profesor=null;
+            profesor = null;
         }
-        try {        
+        try {
             model.setGrupos(domainModel.getServGrupo().obtenerListaGruposP(usuario.getCedula()));
             model.seleccionado = new Grupo();
 //            model.se = new Notas();
@@ -67,35 +70,32 @@ public class Controller extends HttpServlet {
             return "";
         }
     }
-      public String showG(HttpServletRequest request) {
+
+    public String showG(HttpServletRequest request) {
         return this.showGrupos(request);
     }
 
-        public String showGrupos(HttpServletRequest request) {
-            
-        pagina.presentation.profesor.cursos.Model model= (pagina.presentation.profesor.cursos.Model) request.getAttribute("model");
+    public String showGrupos(HttpServletRequest request) {
+
+        pagina.presentation.profesor.cursos.Model model = (pagina.presentation.profesor.cursos.Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         HttpSession session = request.getSession(true);
- 
+
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        
-               
-           
-             model.setSeleccionado(domainModel.getServGrupo().obtenerGrupo(request.getParameter("id")).get());
-              model.setGrupos(domainModel.getServGrupo().obtenerListaGruposP(usuario.getCedula()));
-              model.setNota(domainModel.getServNotas().obtenerListaNotasG(request.getParameter("id")));
-//            model.seleccionado = new Curso();
-            return "/presentation/usuario/profesor/cursos/View.jsp";
-        
-        }
-        
-    private String update(HttpServletRequest request) {
-     
-            return this.updateAction(request);
-            
-        
+
+        model.setSeleccionado(domainModel.getServGrupo().obtenerGrupo(request.getParameter("id")).get());
+        model.setGrupos(domainModel.getServGrupo().obtenerListaGruposP(usuario.getCedula()));
+        model.setNota(domainModel.getServNotas().obtenerListaNotasG(request.getParameter("id")));
+
+        return "/presentation/usuario/profesor/cursos/View.jsp";
+
     }
 
+    private String update(HttpServletRequest request) {
+
+        return this.updateAction(request);
+
+    }
 
     public String updateAction(HttpServletRequest request) {
 
@@ -104,16 +104,13 @@ public class Controller extends HttpServlet {
         String idE = request.getParameter("idEstudiante");
         String n = request.getParameter("nota");
         HttpSession session = request.getSession(true);
-        
-           
-            domainModel.getServNotas().modificarNotas(idG,idE,n);
-          
-            return "/presentation/usuario/profesor/cursos/show";
-        
+
+        domainModel.getServNotas().modificarNotas(idG, idE, n);
+
+        return "/presentation/usuario/profesor/cursos/show";
+
     }
 
-
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

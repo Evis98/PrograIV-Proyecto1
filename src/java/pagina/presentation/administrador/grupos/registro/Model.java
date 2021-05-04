@@ -1,19 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.presentation.administrador.grupos.registro;
 
 import java.util.ArrayList;
 import java.util.List;
 import pagina.logica.Grupo;
-
 /**
- *
- * @author Ivan
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class Model {
+
     Grupo current;
     List<Grupo> list;
 

@@ -1,4 +1,5 @@
 package pagina.presentation.login;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pagina.logica.Usuario;
 
+/**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
+ *
+ */
 @WebServlet(name = "LoginController", urlPatterns = {"/presentation/login/show", "/presentation/login/login", "/presentation/login/logout"})
 public class Controller extends HttpServlet {
 
@@ -48,8 +54,6 @@ public class Controller extends HttpServlet {
             return "/presentation/login/show";
         }
     }
-    
-    
 
     Map<String, String> validar(HttpServletRequest request) {
         Map<String, String> errores = new HashMap<>();
@@ -64,13 +68,13 @@ public class Controller extends HttpServlet {
     }
 
     void updateModel(HttpServletRequest request) {
-        pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
+        pagina.presentation.login.Model model = (pagina.presentation.login.Model) request.getAttribute("model");
         model.getCurrent().setCedula(request.getParameter("cedula"));
         model.getCurrent().setClave(request.getParameter("clave"));
     }
 
     public String loginAction(HttpServletRequest request) {
-                pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
+        pagina.presentation.login.Model model = (pagina.presentation.login.Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         HttpSession session = request.getSession(true);
         String aux = model.getCurrent().getCedula();
@@ -80,18 +84,18 @@ public class Controller extends HttpServlet {
             Usuario real = (Usuario) request.getAttribute("usuario");
             String viewUrl = "";
             if (real.getClave() == null ? request.getParameter("clave") == null : real.getClave().equals(request.getParameter("clave"))) {
-                
-                   switch(real.getRol_fk()){
-                case 1:
-                    viewUrl="/presentation/show";
-                    break;
-                case 2:
-                     viewUrl="/presentation/show";
-                    break;  
-                case 3:
-                     viewUrl="/presentation/show";
-                    break;   
-            }
+
+                switch (real.getRol_fk()) {
+                    case 1:
+                        viewUrl = "/presentation/show";
+                        break;
+                    case 2:
+                        viewUrl = "/presentation/show";
+                        break;
+                    case 3:
+                        viewUrl = "/presentation/show";
+                        break;
+                }
                 session.setAttribute("usuario", real);
                 return viewUrl;
             } else {
@@ -115,7 +119,7 @@ public class Controller extends HttpServlet {
 
     public String logoutAction(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
-                pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
+        pagina.presentation.login.Model model = (pagina.presentation.login.Model) request.getAttribute("model");
         model.getCurrent().setCedula("");
         model.getCurrent().setClave("");
         session.removeAttribute("usuario");
@@ -128,12 +132,11 @@ public class Controller extends HttpServlet {
     }
 
     public String showAction(HttpServletRequest request) {
-        pagina.presentation.login.Model model= (pagina.presentation.login.Model) request.getAttribute("model");
+        pagina.presentation.login.Model model = (pagina.presentation.login.Model) request.getAttribute("model");
         model.getCurrent().setCedula("");
         model.getCurrent().setClave("");
         return "/presentation/login/View.jsp";
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -174,5 +177,4 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
 }

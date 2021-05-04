@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.modelo.dao;
 
 import java.io.IOException;
@@ -19,8 +14,12 @@ import pagina.logica.Estudiante;
 import pagina.logica.Usuario;
 
 /**
- *
- * @author PC
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class ServicioEstudiante {
 
@@ -43,7 +42,7 @@ public class ServicioEstudiante {
            
 
 
-            // Creacion del Proveedor
+            // Creacion del Estudiante
             stmt.clearParameters();
             stmt.setString(1, est.getUsuario().getCedula());
             stmt.setString(2, est.getApellidos());
@@ -69,7 +68,7 @@ public class ServicioEstudiante {
             stm.setString(1, identificacion);
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
-                    // Creacion del usuario para proveedor
+                    // Creacion del usuario para estudiante
                     Optional<Usuario> user = Optional.empty();
                     PreparedStatement stm2 = cnx.prepareStatement(IMEC_Usuario.CONSULTAR.obtenerComando());
                     {
@@ -89,7 +88,7 @@ public class ServicioEstudiante {
 
                     
 
-                    //Creacion del proveedor
+                    //Creacion del estudiante
                     r = Optional.of(new Estudiante(
                             rs.getString("usuario_cedula"),
                             rs.getString("apellidos"),
@@ -117,7 +116,7 @@ public class ServicioEstudiante {
                 ResultSet rs = stm.executeQuery(IMEC_Estudiante.LISTAR.obtenerComando())) {
             while (rs.next()) {
 
-                // Creacion del usuario para proveedor
+                // Creacion del usuario para estudiante
                 Optional<Usuario> user = Optional.empty();
                 PreparedStatement stm2 = cnx.prepareStatement(IMEC_Usuario.CONSULTAR.obtenerComando());
                 {
@@ -135,7 +134,7 @@ public class ServicioEstudiante {
                     }
                 }
 
-                //Creacion del proveedor
+                //Creacion del estudiante 
                 Estudiante e = new Estudiante(
                         
                         rs.getString("usuario_cedula"),

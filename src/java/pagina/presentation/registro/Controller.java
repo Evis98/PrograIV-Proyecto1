@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.presentation.registro;
-
-/**
- *
- * @author PC
- */
 
 
 import pagina.logica.Estudiante;
@@ -24,88 +14,88 @@ import javax.servlet.http.HttpSession;
 import pagina.logica.Usuario;
 
 /**
- *
- * @author jsanchez
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
-@WebServlet(name = "RegistroController", urlPatterns = {"/presentation/registro/add","/presentation/registro/show"})
+
+@WebServlet(name = "RegistroController", urlPatterns = {"/presentation/registro/add", "/presentation/registro/show"})
 public class Controller extends HttpServlet {
 
-  protected void processRequest(HttpServletRequest request, 
-                                HttpServletResponse response)
-         throws ServletException, IOException {
-      
-        request.setAttribute("model", new Model()); 
-        
-        String viewUrl="";
-        switch(request.getServletPath()){
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setAttribute("model", new Model());
+
+        String viewUrl = "";
+        switch (request.getServletPath()) {
             case "/presentation/registro/add":
-                viewUrl=this.register(request);
-                break;     
+                viewUrl = this.register(request);
+                break;
             case "/presentation/registro/show":
-                viewUrl=this.show(request);
+                viewUrl = this.show(request);
                 break;
 
         }
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
-  }
-  
-  public String show(HttpServletRequest request) {
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+    }
+
+    public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
+
     public String showAction(HttpServletRequest request) {
-        pagina.presentation.registro.Model model= (pagina.presentation.registro.Model) request.getAttribute("model");
+        pagina.presentation.registro.Model model = (pagina.presentation.registro.Model) request.getAttribute("model");
         model.getCurrent().setUsuario_cedula("");
         model.getCurrent().setNombre("");
         model.getCurrent().setMail("");
         model.getCurrent().setTelefono("");
         return "/presentation/registro/View.jsp";
     }
-    
 
-
-
-    
-    Map<String,String> validar(HttpServletRequest request){
-        Map<String,String> errores = new HashMap<>();
-        if (request.getParameter("cedula").isEmpty()){
-            errores.put("cedula","Cedula requerida");
+    Map<String, String> validar(HttpServletRequest request) {
+        Map<String, String> errores = new HashMap<>();
+        if (request.getParameter("cedula").isEmpty()) {
+            errores.put("cedula", "Cedula requerida");
         }
-        if (request.getParameter("nombre").isEmpty()){
-            errores.put("nombre","Nombre requerida");
+        if (request.getParameter("nombre").isEmpty()) {
+            errores.put("nombre", "Nombre requerida");
         }
-        if (request.getParameter("email").isEmpty()){
-            errores.put("email","Email requerida");
+        if (request.getParameter("email").isEmpty()) {
+            errores.put("email", "Email requerida");
         }
-        if (request.getParameter("telefono").isEmpty()){
-            errores.put("telefono","Telefono requerida");
+        if (request.getParameter("telefono").isEmpty()) {
+            errores.put("telefono", "Telefono requerida");
         }
         return errores;
     }
-    
-     void updateModel(HttpServletRequest request){
-      Model model = (Model) request.getAttribute("model");
-      Estudiante est = new Estudiante();
-      String aux =  model.generaClave();
-      
-      Usuario user = new Usuario(
-              request.getParameter("cedula"),
-              aux,1
-      
-      );
-       est = new Estudiante(
-      user.getCedula(),
-              request.getParameter("apellidos"),
-              request.getParameter("nombre"),              
-              request.getParameter("telefono"),
-              request.getParameter("email"),
-              user
-      
-        
-      );
-       model.setCurrent(est);
-       model.setClave(aux);
-      
-   }
+
+    void updateModel(HttpServletRequest request) {
+        Model model = (Model) request.getAttribute("model");
+        Estudiante est = new Estudiante();
+        String aux = model.generaClave();
+
+        Usuario user = new Usuario(
+                request.getParameter("cedula"),
+                aux, 1
+        );
+        est = new Estudiante(
+                user.getCedula(),
+                request.getParameter("apellidos"),
+                request.getParameter("nombre"),
+                request.getParameter("telefono"),
+                request.getParameter("email"),
+                user
+        );
+        model.setCurrent(est);
+        model.setClave(aux);
+
+    }
+
     private String register(HttpServletRequest request) {
         try {
             Map<String, String> errores = this.validar(request);
@@ -127,16 +117,16 @@ public class Controller extends HttpServlet {
         Estudiante aux = model.getCurrent();
         try {
             Usuario id = null;
-            
+
             try {
                 id = domainModel.getServUsuario().obtenerUsuario(aux.getUsuario().getCedula()).get();
             } catch (Exception ex) {
                 System.err.printf("Excepción: '%s'%n", ex.getMessage());
             }
 
-            if (id == null ) {
+            if (id == null) {
                 domainModel.getServEstudiante().insertarEstudiante(aux);
-              
+
                 return "/presentation/registro/Clave.jsp";
             } else {
                 throw new Exception();
@@ -150,9 +140,6 @@ public class Controller extends HttpServlet {
         }
     }
 
-
-    
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -192,7 +179,4 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-
-
-    
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.presentation.estudiante.cursos;
 
 import pagina.logica.Estudiante;
@@ -16,39 +11,43 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pagina.logica.Notas;
 
-
+/**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
+ *
+ */
 @WebServlet(name = "EstudianteCursosController", urlPatterns = {"/presentation/usuario/estudiante/cursos/show"})
 public class Controller extends HttpServlet {
-    
-  protected void processRequest(HttpServletRequest request, 
-                                HttpServletResponse response)
-         throws ServletException, IOException {
+
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
 
         request.setAttribute("model", new Model());
-        
-        String viewUrl="";     
+
+        String viewUrl = "";
         switch (request.getServletPath()) {
-          case "/presentation/usuario/estudiante/cursos/show":
-              viewUrl = this.show(request);
-              break;
-        }          
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
-  }
+            case "/presentation/usuario/estudiante/cursos/show":
+                viewUrl = this.show(request);
+                break;
+        }
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+    }
 
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-    
+
     public String showAction(HttpServletRequest request) {
-        
-        pagina.presentation.estudiante.cursos.Model model= (pagina.presentation.estudiante.cursos.Model) request.getAttribute("model");
-        pagina.logica.Model domainModel = pagina.logica.Model.instance(); 
+
+        pagina.presentation.estudiante.cursos.Model model = (pagina.presentation.estudiante.cursos.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
         model.setCursos(domainModel.getServNotas().obtenerNotas(request.getParameter("id")));
         model.setSeleccionado(new Notas());
-         return "/presentation/usuario/estudiante/cursos/View.jsp";
+        return "/presentation/usuario/estudiante/cursos/View.jsp";
 
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

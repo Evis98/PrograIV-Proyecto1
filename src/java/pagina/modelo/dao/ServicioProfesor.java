@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.modelo.dao;
 
 import java.io.IOException;
@@ -20,8 +15,12 @@ import pagina.logica.Profesor;
 import pagina.logica.Usuario;
 
 /**
- *
- * @author PC
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class ServicioProfesor {
     public void insertarProfesor(Profesor prof) {
@@ -42,7 +41,7 @@ public class ServicioProfesor {
            
 
 
-            // Creacion del Proveedor
+            // Creacion del Profesor
             stmt.clearParameters();
             stmt.setString(1, prof.getUsuario().getCedula());
             stmt.setString(2, prof.getApellidos());
@@ -68,7 +67,7 @@ public class ServicioProfesor {
             stm.setString(1, identificacion);
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
-                    // Creacion del usuario para proveedor
+                    // Creacion del usuario para profesor
                     Optional<Usuario> user = Optional.empty();
                     PreparedStatement stm2 = cnx.prepareStatement(IMEC_Usuario.CONSULTAR.obtenerComando());
                     {
@@ -88,7 +87,7 @@ public class ServicioProfesor {
 
                     
 
-                    //Creacion del proveedor
+                    //Creacion del profesor
                     r = Optional.of(new Profesor(
                             rs.getString("usuario_cedula"),
                             rs.getString("apellidos"),
@@ -134,7 +133,7 @@ public class ServicioProfesor {
                     }
                 }
 
-                //Creacion del proveedor
+                //Creacion del profesor
                     Profesor e = new Profesor(
                         
                         rs.getString("usuario_cedula"),

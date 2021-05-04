@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.presentation.administrador.grupos.registro;
-
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,71 +8,73 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import pagina.logica.Grupo;
 
+/**
+ * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
+ * Escobar 117130031 Miguel Montero Arce 402440709
+ *
+ */
+@WebServlet(name = "RegistroGruposController", urlPatterns = {"/presentation/usuario/administrador/grupos/registro/show", "/presentation/usuario/administrador/grupos/registro/add"})
+public class Controller extends HttpServlet {
 
-
-@WebServlet(name = "RegistroGruposController", urlPatterns = {"/presentation/usuario/administrador/grupos/registro/show","/presentation/usuario/administrador/grupos/registro/add"})
-public class Controller extends HttpServlet {             
-    
-  protected void processRequest(HttpServletRequest request, 
-                                HttpServletResponse response)
-         throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException, IOException {
 
         request.setAttribute("model", new Model());
-        
-        String viewUrl="";     
+
+        String viewUrl = "";
         switch (request.getServletPath()) {
-          case "/presentation/usuario/administrador/grupos/registro/show":
-              viewUrl = this.show(request);
-              break;
-          case "/presentation/usuario/administrador/grupos/registro/add":
-              viewUrl = this.register(request);
-              break;
-        }          
-        request.getRequestDispatcher(viewUrl).forward( request, response); 
-  }
+            case "/presentation/usuario/administrador/grupos/registro/show":
+                viewUrl = this.show(request);
+                break;
+            case "/presentation/usuario/administrador/grupos/registro/add":
+                viewUrl = this.register(request);
+                break;
+        }
+        request.getRequestDispatcher(viewUrl).forward(request, response);
+    }
 
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-    
+
     public String showAction(HttpServletRequest request) {
-      pagina.presentation.administrador.grupos.registro.Model model= (pagina.presentation.administrador.grupos.registro.Model) request.getAttribute("model");
+        pagina.presentation.administrador.grupos.registro.Model model = (pagina.presentation.administrador.grupos.registro.Model) request.getAttribute("model");
         model.getCurrent().setId_grupo("");
         model.getCurrent().setId_curso("");
         model.getCurrent().setHorario("");
         model.getCurrent().setProfesor_de_curso("");
         return "/presentation/usuario/administrador/grupos/registro/View.jsp";
     }
-    
-       void updateModel(HttpServletRequest request){
-       pagina.presentation.administrador.grupos.registro.Model model= (pagina.presentation.administrador.grupos.registro.Model) request.getAttribute("model");
-       
+
+    void updateModel(HttpServletRequest request) {
+        pagina.presentation.administrador.grupos.registro.Model model = (pagina.presentation.administrador.grupos.registro.Model) request.getAttribute("model");
+
         model.getCurrent().setId_grupo(request.getParameter("grupo"));
         model.getCurrent().setId_curso(request.getParameter("curso"));
         model.getCurrent().setHorario(request.getParameter("horario"));
         model.getCurrent().setProfesor_de_curso(request.getParameter("profesor"));
-   }        
+    }
 
-    Map<String,String> validar(HttpServletRequest request){
-        Map<String,String> errores = new HashMap<>();
-        if (request.getParameter("grupo").isEmpty()){
-            errores.put("grupo","No. de grupo requerido");
+    Map<String, String> validar(HttpServletRequest request) {
+        Map<String, String> errores = new HashMap<>();
+        if (request.getParameter("grupo").isEmpty()) {
+            errores.put("grupo", "No. de grupo requerido");
         }
-        if (request.getParameter("curso").isEmpty()){
-            errores.put("curso","No. de curso requerido");
+        if (request.getParameter("curso").isEmpty()) {
+            errores.put("curso", "No. de curso requerido");
         }
-        if (request.getParameter("horario").isEmpty()){
-            errores.put("horario","Horario requerido");
+        if (request.getParameter("horario").isEmpty()) {
+            errores.put("horario", "Horario requerido");
         }
-        if (request.getParameter("profesor").isEmpty()){
-            errores.put("profesor","Profesor requerido");
+        if (request.getParameter("profesor").isEmpty()) {
+            errores.put("profesor", "Profesor requerido");
         }
         return errores;
     }
-    
+
     private String register(HttpServletRequest request) {
         try {
             Map<String, String> errores = this.validar(request);
@@ -93,16 +89,16 @@ public class Controller extends HttpServlet {
             return "/presentation/show";
         }
     }
-    
+
     public String registerAction(HttpServletRequest request) {
         Model model = (Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         Grupo aux = model.getCurrent();
         try {
             domainModel.getServGrupo().insertarGrupo(aux);
-              
-                return "/presentation/show";
-            
+
+            return "/presentation/show";
+
         } catch (Exception exception) {
             System.out.println(exception.getClass().getCanonicalName());
             Map<String, String> errores = new HashMap<>();
@@ -111,6 +107,7 @@ public class Controller extends HttpServlet {
             return "/presentation/registro/show";
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

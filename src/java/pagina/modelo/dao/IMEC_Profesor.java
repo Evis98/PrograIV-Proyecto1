@@ -1,23 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.modelo.dao;
 
 /**
- *
- * @author PC
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
-public  enum IMEC_Profesor {
-    
+public enum IMEC_Profesor {
+
     INSERTAR("INSERT INTO `matricula`.`profesor`(`usuario_cedula`,`apellidos`, `nombre`,`mail`,`especialidad`) "
             + "VALUES(?,?,?,?,?);"),
-   
     CONSULTAR("SELECT * FROM profesor WHERE usuario_cedula=?; "),
     UBI_ID("SELECT LAST_INSERT_ID() AS ID;"),
     LISTAR("SELECT * FROM profesor ORDER BY usuario_cedula; ");
-    
+
     IMEC_Profesor(String comando) {
         this.comando = comando;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagina.modelo.dao;
 
 import java.io.IOException;
@@ -19,17 +14,20 @@ import pagina.logica.Administrador;
 import pagina.logica.Usuario;
 
 /**
- *
- * @author PC
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class ServicioAdministrador {
-      public void insertarAdministrador(Administrador adm) {
+
+    public void insertarAdministrador(Administrador adm) {
         try (
                 Connection cnx = obtenerConexion();
                 PreparedStatement stmt = cnx.prepareStatement(IMEC_Administrador.INSERTAR.obtenerComando());
                 PreparedStatement stmt2 = cnx.prepareStatement(IMEC_Usuario.INSERTAR.obtenerComando());) {
-
-          
 
             // Creacion del Usuario
             stmt2.clearParameters();
@@ -38,10 +36,7 @@ public class ServicioAdministrador {
             stmt2.setInt(4, adm.getUsuario().getRol_fk());
             stmt2.executeUpdate();
 
-           
-
-
-            // Creacion del Proveedor
+            // Creacion del Administrador
             stmt.clearParameters();
             stmt.setString(1, adm.getUsuario().getCedula());
             stmt.setString(2, adm.getApellidos());
@@ -65,7 +60,7 @@ public class ServicioAdministrador {
             stm.setString(1, identificacion);
             try (ResultSet rs = stm.executeQuery()) {
                 if (rs.next()) {
-                    // Creacion del usuario para proveedor
+                    // Creacion del usuario para administrador
                     Optional<Usuario> user = Optional.empty();
                     PreparedStatement stm2 = cnx.prepareStatement(IMEC_Usuario.CONSULTAR.obtenerComando());
                     {
@@ -77,15 +72,12 @@ public class ServicioAdministrador {
                                         rs2.getString("cedula"),
                                         rs2.getString("clave"),
                                         rs2.getInt("rol_fk")
-                                      
                                 ));
                             }
                         }
                     }
 
-                    
-
-                    //Creacion del proveedor
+                    //Creacion del administrador
                     r = Optional.of(new Administrador(
                             rs.getString("usuario_cedula"),
                             rs.getString("apellidos"),
@@ -120,22 +112,19 @@ public class ServicioAdministrador {
                     try (ResultSet rs2 = stm2.executeQuery()) {
                         if (rs2.next()) {
                             user = Optional.of(new Usuario(
-                                        rs2.getString("cedula"),
-                                        rs2.getString("clave"),
-                                        rs2.getInt("rol_fk")
-                                      
-                                ));
+                                    rs2.getString("cedula"),
+                                    rs2.getString("clave"),
+                                    rs2.getInt("rol_fk")
+                            ));
                         }
                     }
                 }
 
-                //Creacion del proveedor
+                //Creacion del administrador
                 Administrador e = new Administrador(
-                        
                         rs.getString("usuario_cedula"),
-                            rs.getString("apellidos"),
-                            rs.getString("nombre"),
-                         
+                        rs.getString("apellidos"),
+                        rs.getString("nombre"),
                         user.get()
                 );
                 r.add(e);
@@ -149,8 +138,6 @@ public class ServicioAdministrador {
         }
         return r;
     }
-
-   
 
     public Connection obtenerConexion() throws
             ClassNotFoundException,

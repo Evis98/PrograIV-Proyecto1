@@ -7,10 +7,13 @@ package pagina.logica;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
- *
- * @author Ivan
+ *  Proyecto 1
+ *  Estudiantes:
+ *  Crystian Chininin Barrantes 115920081
+ *  Eva Durán Escobar 117130031
+ *  Miguel Montero Arce 402440709
+ * 
  */
 public class Curso {
     String id_curso;
