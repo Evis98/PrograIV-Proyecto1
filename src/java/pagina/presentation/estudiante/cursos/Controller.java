@@ -1,5 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package pagina.presentation.estudiante.cursos;
 
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import pagina.logica.Estudiante;
 import pagina.logica.Usuario;
 import java.io.IOException;
@@ -9,44 +22,66 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import pagina.logica.Curso;
 import pagina.logica.Notas;
 
-/**
- * Proyecto 1 Estudiantes: Crystian Chininin Barrantes 115920081 Eva Durán
- * Escobar 117130031 Miguel Montero Arce 402440709
- *
- */
-@WebServlet(name = "EstudianteCursosController", urlPatterns = {"/presentation/usuario/estudiante/cursos/show"})
-public class Controller extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request,
-            HttpServletResponse response)
-            throws ServletException, IOException {
+@WebServlet(name = "EstudianteCursosController", urlPatterns = {"/presentation/usuario/estudiante/cursos/show","/presentation/usuario/estudiante/cursos/print"})
+public class Controller extends HttpServlet {
+    
+  protected void processRequest(HttpServletRequest request, 
+                                HttpServletResponse response)
+         throws ServletException, IOException {
 
         request.setAttribute("model", new Model());
-
-        String viewUrl = "";
+        
+        String viewUrl="";     
         switch (request.getServletPath()) {
-            case "/presentation/usuario/estudiante/cursos/show":
-                viewUrl = this.show(request);
-                break;
-        }
-        request.getRequestDispatcher(viewUrl).forward(request, response);
-    }
+          case "/presentation/usuario/estudiante/cursos/show":
+              viewUrl = this.show(request);
+              break;
+          case "/presentation/usuario/estudiante/cursos/print":
+              viewUrl=this.print(request,response);
+              break;       
+        }          
+        request.getRequestDispatcher(viewUrl).forward( request, response); 
+  }
 
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-
+    
     public String showAction(HttpServletRequest request) {
-
-        pagina.presentation.estudiante.cursos.Model model = (pagina.presentation.estudiante.cursos.Model) request.getAttribute("model");
-        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        
+        pagina.presentation.estudiante.cursos.Model model= (pagina.presentation.estudiante.cursos.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance(); 
         model.setCursos(domainModel.getServNotas().obtenerNotas(request.getParameter("id")));
         model.setSeleccionado(new Notas());
-        return "/presentation/usuario/estudiante/cursos/View.jsp";
+         return "/presentation/usuario/estudiante/cursos/View.jsp";
 
     }
+    
+    private String print(HttpServletRequest request,  HttpServletResponse response) throws IOException {  
+        pagina.presentation.estudiante.cursos.Model model= (pagina.presentation.estudiante.cursos.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        try {
+            model.setCursos(domainModel.getServNotas().obtenerNotas(request.getParameter("id")));
+            model.setSeleccionado(new Notas());
+            PdfDocument pdf = new PdfDocument(new PdfWriter(response.getOutputStream()));
+            Document doc = new Document(pdf, PageSize.A4.rotate());
+            PdfFont font = PdfFontFactory.createFont(StandardFonts.HELVETICA);
+            doc.add(new Paragraph("Historial de cursos"));
+            doc.add(new Paragraph(model.getCursos().toString().toString())); 
+            doc.add(new Paragraph(""));
+
+            doc.close();
+            response.setContentType("application/pdf");
+            response.addHeader("Content-disposition", "inline");
+            return null;
+        } catch (Exception ex) {
+            return "/presentation/Error.jsp";
+        }        
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

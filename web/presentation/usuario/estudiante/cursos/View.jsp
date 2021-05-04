@@ -3,10 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="pagina.logica.Curso"%>
-<%
-    Model model = (Model) request.getAttribute("model");
-    List<Notas> cursos = model.getCursos();
-%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -59,6 +56,12 @@
 <body >
     <%@ include file="/presentation/Header.jsp" %>
 
+    <%
+    Model model = (Model) request.getAttribute("model");
+    List<Notas> cursos = model.getCursos();
+    String cedulaEstudiante = "";
+    cedulaEstudiante = usuario.getCedula();
+    %>
 
         <h1>Historial de Cursos del estudiante</h1>     
         
@@ -90,7 +93,12 @@
 
             <br>
   
-    <div class="fila encabezado"><button  style="margin-bottom: 15px">Generar PDF</button> </div>
+    <form action="/Matricula/presentation/usuario/estudiante/cursos/print">
+            <div class="panel" style="width:30%;">
+                <input type="hidden" name="id" value="<%= cedulaEstudiante%>">
+                <div class="fila encabezado"><button  style="margin-bottom: 15px">PDF</button>  </div>
+            </div> 
+        </form>
      <%@ include file="/presentation/Footer.jsp" %>
 </body>
 </html>

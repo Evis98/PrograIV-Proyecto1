@@ -86,5 +86,10 @@ public class Notas {
         this.nota = nota;
         this.id_profesor = id_profesor;
     }
+    
+    @Override
+    public String toString() {
+        return " Id: " + id_estudiante + "      Grupo: " + id_grupo + "      Nota: " + nota + "      Profesor: " + id_profesor + "      Curso: " + id_curso + "      Horario: " + horario + '\n';
+    }
 
 }
