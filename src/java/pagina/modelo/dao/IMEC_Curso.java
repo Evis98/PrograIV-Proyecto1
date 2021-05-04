@@ -11,7 +11,7 @@ package pagina.modelo.dao;
  */
 public enum IMEC_Curso {
       INSERTAR("INSERT INTO `matricula`.`curso`(`id_curso`,`nombre`,`tematica`,`costo`,`enOferta`,`abierto`) VALUES(?,?,?,?,?,?);"),
-//    MODIFICAR("UPDATE estudiante SET apellidos=?, nombre=? WHERE id=?; "),
+     MODIFICAR("UPDATE curso SET enOferta=? WHERE id_curso=?; "),
 //    EXCLUIR("DELETE FROM estudiante WHERE id=?; "),
     CONSULTAR("SELECT * FROM curso WHERE id_curso=?; "),
     LISTAR("SELECT * FROM curso ORDER BY id_curso; ");

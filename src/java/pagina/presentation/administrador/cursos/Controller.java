@@ -25,7 +25,7 @@ import pagina.logica.Curso;
 
 
 
-@WebServlet(name = "AdministradorCursosController", urlPatterns = {"/presentation/usuario/administrador/cursos/show","/presentation/usuario/administrador/cursos/grupos"})
+@WebServlet(name = "AdministradorCursosController", urlPatterns = {"/presentation/usuario/administrador/cursos/show","/presentation/usuario/administrador/cursos/grupos","/presentation/usuario/administrador/cursos/update"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -42,9 +42,43 @@ public class Controller extends HttpServlet {
           case "/presentation/usuario/administrador/cursos/grupos":
               viewUrl = this.showG(request);
               break;
+          case "/presentation/usuario/administrador/cursos/update":
+              viewUrl = this.updateG(request);
+              break;
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
+  
+  
+
+    
+
+    private String updateG(HttpServletRequest request) {
+  
+                return this.updateOferta(request);
+
+        }
+    
+
+    public String updateOferta(HttpServletRequest request) {
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        String id = request.getParameter("idCurso");
+        Boolean aux = true;
+        
+        Boolean oferta = Boolean.valueOf(request.getParameter("habilitaOferta"));
+        
+        if(oferta==true){
+            aux = false;
+        }
+        if(oferta==false){
+            aux = true;
+        }
+        
+        domainModel.getServCurso().modificarOferta(id,aux);
+        return "/presentation/usuario/administrador/cursos/show";
+
+        }
+    
  public String showG(HttpServletRequest request) {
         return this.showGrupos(request);
     }
@@ -115,8 +149,5 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-
-
 
 }

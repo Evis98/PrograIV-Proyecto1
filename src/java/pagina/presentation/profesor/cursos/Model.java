@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import pagina.logica.Curso;
 import pagina.logica.Grupo;
+import pagina.logica.Notas;
 
 /**
  *
@@ -17,18 +18,45 @@ import pagina.logica.Grupo;
 public class Model {
 
    List<Grupo> grupos;
-    Curso seleccionado;
+    Grupo seleccionado;
 
+    public Notas getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Notas current) {
+        this.current = current;
+    }
+Notas current;
+
+
+    public List<Notas> getNota() {
+        return nota;
+    }
+
+    public void setNota(List<Notas> notas) {
+        this.nota = notas;
+    }
+List<Notas> nota;
     public Model() {
         this.reset();
     }
 
     public void reset(){ 
-    
-        List<Grupo> rows1 = new ArrayList<>();
-        seleccionado=null;  
 
+        List<Grupo> rows1 = new ArrayList<>();
+        seleccionado=null;
+        List<Notas> rows = new ArrayList<>();
+        this.setNota(rows);
         this.setGrupos(rows1);
+         this.current = new Notas(
+                "", 
+                "",
+                "",
+                "",
+                "",""
+        );
+
     }
 
     public List<Grupo> getGrupos() {
@@ -38,13 +66,13 @@ public class Model {
     public void setGrupos(List<Grupo> grupos) {
         this.grupos = grupos;
     }
-    
 
-    public Curso getSeleccionado() {
+
+    public Grupo getSeleccionado() {
         return seleccionado;
     }
 
-    public void setSeleccionado(Curso seleccionado) {
+    public void setSeleccionado(Grupo seleccionado) {
         this.seleccionado = seleccionado;
     } 
 }

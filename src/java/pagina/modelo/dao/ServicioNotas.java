@@ -24,43 +24,73 @@ import pagina.logica.Notas;
  */
 public class ServicioNotas {
 
-//    public List<Notas> obtenerListaNotas(String id) {
-//        List<Notas> r = new ArrayList<>();
-//        try (Connection cnx = obtenerConexion();
-//                Statement stm = cnx.createStatement();
-//                ResultSet rs = stm.executeQuery(IMEC_Notas.LISTAR.obtenerComando())) {
-//            while (rs.next()) {
-//                Notas g = new Notas(
-//                            rs.getString("id_grupo"),
-//                            rs.getString("id_curso"),
-//                            rs.getString("horario"),
-//                            rs.getString("cedula_profesor")
-//                );
-//                if(g.getId_curso().equals(id)){
-//                r.add(g);}
-//            }
-//        } catch (IOException
-//                | ClassNotFoundException
-//                | IllegalAccessException
-//                | InstantiationException
-//                | SQLException ex) {
-//            System.err.printf("Excepción: '%s'%n", ex.getMessage());
-//        }
-//        return r;
-//    }
-    public List<Notas> obtenerListaNotasP(String id) {
+
+    public void modificarNotas(String idG,String idE,String nota) {
+        try (
+                Connection cnx = obtenerConexion();
+                PreparedStatement stmt = cnx.prepareStatement(IMEC_Notas.MODIFICAR.obtenerComando())) {
+            stmt.clearParameters();
+
+             stmt.setString(1,nota);
+            stmt.setString(2, idG);
+            stmt.setString(3, idE);
+
+
+            stmt.executeUpdate();
+            System.out.println(stmt);
+             stmt.executeUpdate();
+        } catch (IOException
+                | ClassNotFoundException
+                | IllegalAccessException
+                | InstantiationException
+                | SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+    }
+public List<Notas> obtenerListaNotasG(String id) {
+        List<Notas> r = new ArrayList<>();
+        try (Connection cnx = obtenerConexion();
+                Statement stm = cnx.createStatement();
+                ResultSet rs = stm.executeQuery(IMEC_Notas.LISTAR.obtenerComando())) {
+            while (rs.next()) {
+                
+//                (String id_estudiante, String id_grupo, String nota, String id_profesor, String id_curso, String horario)
+                Notas g = new Notas(
+                        rs.getString("cedula_estudiante"),
+                            rs.getString("id_grupo"),
+                            rs.getString("nota"),
+                            rs.getString("cedula_profesor"),
+                            
+                        rs.getString("id_curso"),
+                        rs.getString("horario")
+                );
+                if(g.getId_grupo().equals(id)){
+                r.add(g);}
+            }
+        } catch (IOException
+                | ClassNotFoundException
+                | IllegalAccessException
+                | InstantiationException
+                | SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+        }
+        return r;
+    }
+     public List<Notas> obtenerNotas(String id) {
         List<Notas> r = new ArrayList<>();
         try (Connection cnx = obtenerConexion();
                 Statement stm = cnx.createStatement();
                 ResultSet rs = stm.executeQuery(IMEC_Notas.LISTAR.obtenerComando())) {
             while (rs.next()) {
                 Notas g = new Notas(
-                            rs.getString("id_grupo"),
                             rs.getString("cedula_estudiante"),
+                            rs.getString("id_grupo"),
+                            rs.getString("nota"),
                             rs.getString("cedula_profesor"),
-                            rs.getString("nota")
+                            rs.getString("id_curso"),
+                            rs.getString("horario")
                 );
-                if(g.getId_profesor().equals(id)){
+                if(g.getId_estudiante().equals(id)){
                 r.add(g);}
             }
         } catch (IOException

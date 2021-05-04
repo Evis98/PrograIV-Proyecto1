@@ -24,6 +24,30 @@ import pagina.logica.Curso;
  * @author PC
  */
 public class ServicioCurso {
+    
+    
+        public void modificarOferta(String id, Boolean oferta) {
+
+        try (
+                Connection cnx = obtenerConexion();
+                PreparedStatement stmt = cnx.prepareStatement(IMEC_Curso.MODIFICAR.obtenerComando())) {
+            stmt.clearParameters();
+            stmt.setBoolean(1, oferta);
+            stmt.setString(2, id);
+            
+            System.out.println(stmt);
+            stmt.executeUpdate();
+
+        } catch (IOException
+                | ClassNotFoundException
+                | IllegalAccessException
+                | InstantiationException
+                | SQLException ex) {
+            System.err.printf("Excepción: '%s'%n", ex.getMessage());
+
+
+        }
+    }
       public void insertarCurso(Curso cur) {
         try (
                 Connection cnx = obtenerConexion();
@@ -120,5 +144,7 @@ public class ServicioCurso {
         Connection cnx = bd.obtenerConexion();
         return cnx;
     }
+
+
 
 }

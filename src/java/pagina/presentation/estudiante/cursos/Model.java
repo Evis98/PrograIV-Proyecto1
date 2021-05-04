@@ -7,39 +7,39 @@ package pagina.presentation.estudiante.cursos;
 
 import java.util.ArrayList;
 import java.util.List;
-import pagina.logica.Curso;
+import pagina.logica.Notas;
 
 /**
  *
  * @author Ivan
  */
 public class Model {
-   List<Curso> cursos;
-    Curso seleccionado;
+   List<Notas> cursos;
+    Notas seleccionado;
 
     public Model() {
         this.reset();
     }
 
     public void reset(){ 
-        List<Curso> rows = new ArrayList<>();        
+        List<Notas> rows = new ArrayList<>();        
         seleccionado=null;  
         this.setCursos(rows);
     }
     
-    public void setCursos(List<Curso> cursos){
+    public void setCursos(List<Notas> cursos){
         this.cursos = cursos;    
     }
 
-     public List<Curso> getCursos() {
+     public List<Notas> getCursos() {
         return cursos;
     }
 
-    public Curso getSeleccionado() {
+    public Notas getSeleccionado() {
         return seleccionado;
     }
 
-    public void setSeleccionado(Curso seleccionado) {
+    public void setSeleccionado(Notas seleccionado) {
         this.seleccionado = seleccionado;
     } 
 }

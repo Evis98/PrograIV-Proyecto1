@@ -112,44 +112,66 @@
 			<div class="td">Oferta</div>
                         <div class="td">Abierto</div>
                         <div class="td">Grupos</div>
+                        <div class="td">   </div>
 		</div>
 	</div>
 	<div class="tbody">                
                         <% for(Curso c:cursoVista){%>
-		<form class="tr" action="/Matricula/presentation/usuario/administrador/cursos/grupos" method="post">
+                <div class="tr">
 			<div class="td"><%=c.getId_curso()%></div>
-                        <input type="hidden" name="id" value="<%=c.getId_curso()%>" />
 			<div class="td"><%=c.getNombre()%></div>
 			<div class="td"><%=c.getTematica()%></div>
 			<div class="td"><%=c.getCosto()%></div>
                         <div class="td"><%=c.isEnOferta()%></div>
-                        <div class="td"><%=c.isEnOferta()%></div>
-			<div class="td action"><button style="margin-bottom: 15px">Ver Grupos</button></div>
-		</form>
+                        <div class="td"><%=c.getAbierto()%></div>
+                        <div class="td">
+                        <form name ="form" action="/Matricula/presentation/usuario/administrador/cursos/grupos" method="post">
+                        <input type="hidden" name="id" value="<%=c.getId_curso()%>" />
+			<button style="margin-bottom: 15px">Ver Grupos</button>
+                        </form>
+                        </div>
+                         <div class="td">
+                        <form name ="form" action="/Matricula/presentation/usuario/administrador/cursos/update" method="post">
+                        <input type="hidden" name="habilitaOferta" value="<%=c.isEnOferta()%>" />
+                        <input type="hidden" name="idCurso" value="<%=c.getId_curso()%>" />
+                        <%if(c.isEnOferta()==true){%>
+			<button style="margin-bottom: 15px">Deshabilitar Oferta</button>
+                        <%}%>
+                        <%if(c.isEnOferta()==false){%>
+			<button style="margin-bottom: 15px">Habilitar Oferta</button>
+                        <%}%> 
+                        
+                        </form>
+                        </div>
+                        
+
+		</div>
                         <%}%> 
 		
 	</div>
 </div>
                       <div><h1>Horarios: </h1></div>
-                      <div class="fila encabezado">               </form
-                                      <form action="https://media.tenor.com/images/a5939482ebfca35f320f08c0a3dc6150/tenor.gif">
-    <input type="submit" value="Agregar Grupo" />
+                      <div class="fila encabezado">              
+                                      <form action="/Matricula/presentation/usuario/administrador/grupos/registro/show">
+    <input type="submit" value="Agregar Grupo"/>
                 </form>
     </div>
         
     <div class="table">
 	<div class="thead">
 		<div class="tr">
+                        <div class="td">ID</div> 
 			<div class="td">Horario</div>
 			<div class="td">Profesor</div>
 		</div>
 	</div>
 	<div class="tbody">                
                         <% for(Grupo g:grupos){%>
-		<form class="tr">
+		<div class="tr">
+                        <div class="td"><%=g.getId_grupo()%></div>
 			<div class="td"><%=g.getHorario()%></div>
 			<div class="td"><%=g.getProfesor_de_curso()%></div>
-		</form>
+		</div>
                         <%}%> 
 		
 	</div>

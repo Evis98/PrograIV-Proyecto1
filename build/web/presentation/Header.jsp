@@ -20,8 +20,7 @@
                   <ul>  <!--submenu --></ul>
                 </li>
                 <li >
-                  <a  href="/Matricula/presentation/usuario/estudiante/cursos/show">Historial Academico</a>
-  
+                  <a  href="/Matricula/presentation/usuario/estudiante/cursos/show?id=<%=usuario.getCedula()%>">Historial Academico</a>
                   <ul>  <!--submenu --></ul>
                 </li> 
                         <% } %>

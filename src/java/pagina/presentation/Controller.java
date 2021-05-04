@@ -70,7 +70,7 @@ public class Controller extends HttpServlet {
        nota1 = new Notas(
                request.getParameter("idEst"),
                request.getParameter("idGrupo"),
-               " ",
+               "No Asignada",
                request.getParameter("idProf"),
                request.getParameter("idCurso"),
                request.getParameter("horario")
@@ -100,7 +100,7 @@ public class Controller extends HttpServlet {
         Notas aux = model.getNotaS();
         try {
             domainModel.getServNotas().insertarNota(aux);
-                return "/presentation/usuario/estudiante/cursos/show";
+                return "/presentation/show";
             
         } catch (Exception exception) {
             System.out.println(exception.getClass().getCanonicalName());

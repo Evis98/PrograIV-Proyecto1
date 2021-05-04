@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import pagina.logica.Notas;
 
 
 @WebServlet(name = "EstudianteCursosController", urlPatterns = {"/presentation/usuario/estudiante/cursos/show"})
@@ -39,23 +40,13 @@ public class Controller extends HttpServlet {
     }
     
     public String showAction(HttpServletRequest request) {
-        Model model = (Model) request.getAttribute("model");
-        pagina.logica.Model domainModel = pagina.logica.Model.instance();
-        HttpSession session = request.getSession(true);
- 
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        Estudiante estudiante;
-        try {
-            estudiante = domainModel.getServEstudiante().obtenerEstudiante(usuario.getCedula()).get();
-        } catch (Exception ex) {
-            estudiante=null;
-        }
-        try {        
- 
-            return "/presentation/usuario/estudiante/cursos/View.jsp";
-        } catch (Exception ex) {
-            return "";
-        }
+        
+        pagina.presentation.estudiante.cursos.Model model= (pagina.presentation.estudiante.cursos.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance(); 
+        model.setCursos(domainModel.getServNotas().obtenerNotas(request.getParameter("id")));
+        model.setSeleccionado(new Notas());
+         return "/presentation/usuario/estudiante/cursos/View.jsp";
+
     }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

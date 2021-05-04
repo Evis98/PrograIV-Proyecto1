@@ -1,10 +1,11 @@
+<%@page import="pagina.logica.Notas"%>
 <%@page import="pagina.presentation.estudiante.cursos.Model"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="pagina.logica.Curso"%>
 <%
     Model model = (Model) request.getAttribute("model");
-    List<Curso> cursos = model.getCursos();
+    List<Notas> cursos = model.getCursos();
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -65,23 +66,21 @@
         <div class="table">
 	<div class="thead">
 		<div class="tr">
-			<div class="td">ID</div>
-			<div class="td">Nombre</div>
-			<div class="td">Tematica</div>
-			<div class="td">Costo</div>
-			<div class="td">Oferta</div>
-                        <div class="td">Abierto</div>
+			<div class="td">ID Curso</div>
+			<div class="td">ID Grupo</div>
+			<div class="td">Cedula Profesor</div>
+			<div class="td">Horario</div>
+			<div class="td">Nota</div>
 		</div>
 	</div>
 	<div class="tbody">                
-                        <% for(Curso c:cursos){%>
+                        <% for(Notas n:cursos){%>
 		<form class="tr" action="/Matricula/presentation/grupos" method="post">
-			<div class="td"><%=c.getId_curso()%></div>
-			<div class="td"><%=c.getNombre()%></div>
-			<div class="td"><%=c.getTematica()%></div>
-			<div class="td"><%=c.getCosto()%></div>
-                        <div class="td"><%=c.isEnOferta()%></div>
-                        <div class="td"><%=c.isEnOferta()%></div>
+			<div class="td"><%=n.getId_curso()%></div>
+			<div class="td"><%=n.getId_grupo()%></div>
+			<div class="td"><%=n.getId_profesor()%></div>
+			<div class="td"><%=n.getHorario()%></div>
+                        <div class="td"><%=n.getNota()%></div>
 		</form>
                         <%}%> 
 		

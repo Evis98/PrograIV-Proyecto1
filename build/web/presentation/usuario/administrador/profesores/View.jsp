@@ -98,11 +98,13 @@
 			<div class="td"><%=p.getNombre()%></div>
 			<div class="td"><%=p.getMail()%></div>
                         <div class="td"><%=p.getEspecialidad()%></div>
+                        
+                </div>
                         <%}%> 
-		
-	</div>
+	</div>	
+	
 </div>
-</div>
+
 
     <div class="fila encabezado">           
                 <form action="/Matricula/presentation/usuario/administrador/profesores/registro/show">
