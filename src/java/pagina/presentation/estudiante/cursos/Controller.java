@@ -51,7 +51,7 @@ public class Controller extends HttpServlet {
             estudiante=null;
         }
         try {        
-            model.setCursos(domainModel.cursosFind(estudiante));
+ 
             return "/presentation/usuario/estudiante/cursos/View.jsp";
         } catch (Exception ex) {
             return "";

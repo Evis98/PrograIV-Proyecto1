@@ -64,8 +64,11 @@
     List<Curso> cursos = model.getCursos();
     List<Curso> cursoVista = new ArrayList();
     List<Grupo> grupos = model.getGrupos();
-
-   
+    Curso seleccionado = model.getSeleccionado();
+    String cedulaEstudiante = " ";
+     if(usuario!=null){ 
+    cedulaEstudiante = usuario.getCedula();
+ }
 %>
 
                    <%       
@@ -105,7 +108,7 @@
                         <% for(Curso c:cursoVista){%>
 		<form class="tr" action="/Matricula/presentation/grupos" method="post">
 			<div class="td"><%=c.getId_curso()%></div>
-                        <input type="hidden" name="id" value="<%=c.getId_curso()%>" />
+                        <input type="hidden" name="id" value="<%=c.getId_curso()%>">
 			<div class="td"><%=c.getNombre()%></div>
 			<div class="td"><%=c.getTematica()%></div>
 			<div class="td"><%=c.getCosto()%></div>
@@ -124,36 +127,32 @@
                     <div class="td">ID</div>
 			<div class="td">Horario</div>
 			<div class="td">Profesor</div>
+                        <div class="td">Matricula</div>
 		</div>
 	</div>
 	<div class="tbody">                
                         <% for(Grupo g:grupos){%>
-		<form class="tr">
+                        <%if(usuario!=null){%>
+  <%if(usuario.getRol_fk()==1){%>
+		<form class="tr" action="/Matricula/presentation/matricular" method="post">
+                    <%}%>
+                <%}%> 
+                <% if(usuario==null){%>
+                <form class="tr" action="/Matricula/presentation/login/show">
+                     <%}%>
+                    <input type="hidden" name="idCurso" value="<%= seleccionado.getId_curso()%>">
                     <div class="td"><%=g.getId_grupo()%></div>
+                    <input type="hidden" name="idGrupo" value="<%= g.getId_grupo()%>">
 			<div class="td"><%=g.getHorario()%></div>
+                        <input type="hidden" name="horario" value="<%= g.getHorario()%>">
 			<div class="td"><%=g.getProfesor_de_curso()%></div>
+                        <input type="hidden" name="idProf" value="<%= g.getProfesor_de_curso()%>">
+                        <input type="hidden" name="idEst" value="<%= cedulaEstudiante%>">
+                        <div class="td action"><button style="margin-bottom: 15px">Matricular</button></div>
 		</form>
                         <%}%> 
 		
 	</div>
 </div>                  
-  <br><br>
- <%if(usuario!=null){%>
-  <%if(usuario.getRol_fk()==1){%>
-                            
-               <form action="https://media.tenor.com/images/a5939482ebfca35f320f08c0a3dc6150/tenor.gif">
-    <input type="submit" value="Matricula" />
-</form>
-                <%}%>
-                <%}%> 
-                
-                <% if(usuario==null){%>
-                               <form action="/Matricula/presentation/login/show">
-    <input type="submit" value="Matricula" />
-</form>
-                <%}%>
-                
-     
-                
      <%@ include file="/presentation/Footer.jsp" %>
 </html>

@@ -7,15 +7,18 @@ package pagina.presentation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import pagina.logica.Curso;
+import pagina.logica.Notas;
 
 
-@WebServlet(name = "InicioController", urlPatterns = {"/presentation/show","/presentation/grupos"})
+@WebServlet(name = "InicioController", urlPatterns = {"/presentation/show","/presentation/grupos", "/presentation/matricular"})
 public class Controller extends HttpServlet {
     
   protected void processRequest(HttpServletRequest request, 
@@ -32,10 +35,16 @@ public class Controller extends HttpServlet {
           case "/presentation/grupos":
               viewUrl = this.showG(request);
               break;
+          case "/presentation/matricular":
+              viewUrl = this.matricular(request);
+              break;
         }          
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
 
+    public String matricular(HttpServletRequest request) {
+        return this.matricularGrupo(request);
+    }
     public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
@@ -46,19 +55,88 @@ public class Controller extends HttpServlet {
         public String showGrupos(HttpServletRequest request) {
          pagina.presentation.Model model= (pagina.presentation.Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance(); 
-        //model.setSeleccionado(domainModel.getServCurso().obtenerCurso(request.getParameter("id")).get());
+        model.setSeleccionado(domainModel.getServCurso().obtenerCurso(request.getParameter("id")).get());
         model.setCursos(domainModel.getServCurso().obtenerListaCursos());
         model.setGrupos(domainModel.getServGrupo().obtenerListaGrupos(request.getParameter("id")));
          return "/presentation/Index.jsp";
     }
 
+      void updateModel(HttpServletRequest request){
 
+       pagina.presentation.Model model = (pagina.presentation.Model) request.getAttribute("model");
+       Notas nota1 = new Notas();
+       
+       
+       nota1 = new Notas(
+               request.getParameter("idEst"),
+               request.getParameter("idGrupo"),
+               " ",
+               request.getParameter("idProf"),
+               request.getParameter("idCurso"),
+               request.getParameter("horario")
+ 
+       );
+       model.setNotaS(nota1);
+
+   }
+    private String matricularGrupo(HttpServletRequest request) {
+        try {
+            Map<String, String> errores = this.validar(request);
+            if (errores.isEmpty()) {
+                this.updateModel(request);
+                return this.registerAction(request);
+            } else {
+                request.setAttribute("errores", errores);
+                return "/presentation/show";
+            }
+        } catch (Exception e) {
+            return "/presentation/show";
+        }
+    }
+
+    public String registerAction(HttpServletRequest request) {
+        pagina.presentation.Model model = (pagina.presentation.Model) request.getAttribute("model");
+        pagina.logica.Model domainModel = pagina.logica.Model.instance();
+        Notas aux = model.getNotaS();
+        try {
+            domainModel.getServNotas().insertarNota(aux);
+                return "/presentation/usuario/estudiante/cursos/show";
+            
+        } catch (Exception exception) {
+            System.out.println(exception.getClass().getCanonicalName());
+            Map<String, String> errores = new HashMap<>();
+            request.setAttribute("errores", errores);
+            errores.put("cedula", "Usuario existente");
+            return "/presentation/show";
+        }
+    }
+        
+
+    Map<String,String> validar(HttpServletRequest request){
+        Map<String,String> errores = new HashMap<>();
+        if (request.getParameter("idGrupo").isEmpty()){
+            errores.put("id","Cedula requerida");
+        }
+        if (request.getParameter("idEst").isEmpty()){
+            errores.put("nombre","Clave requerida");
+        }
+        if (request.getParameter("idProf").isEmpty()){
+            errores.put("tematica","Cedula requerida");
+        }
+        if (request.getParameter("idCurso").isEmpty()){
+            errores.put("costo","Clave requerida");
+        }
+           if (request.getParameter("horario").isEmpty()){
+            errores.put("costo","Clave requerida");
+        }
+        return errores;
+    }
     public String showAction(HttpServletRequest request) {
         pagina.presentation.Model model= (pagina.presentation.Model) request.getAttribute("model");
         pagina.logica.Model domainModel = pagina.logica.Model.instance();
         model.setCursos(domainModel.getServCurso().obtenerListaCursos());
         model.setGrupos(new ArrayList());
-       model.setSeleccionado(new Curso());
+        model.setSeleccionado(new Curso());
         return "/presentation/Index.jsp";
     }
 
@@ -102,4 +180,6 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+
 }

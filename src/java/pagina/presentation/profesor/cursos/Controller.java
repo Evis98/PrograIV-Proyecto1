@@ -49,7 +49,7 @@ public class Controller extends HttpServlet {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         Profesor profesor;
         try {
-            profesor = domainModel.profesorFind(usuario);
+
         } catch (Exception ex) {
             profesor=null;
         }

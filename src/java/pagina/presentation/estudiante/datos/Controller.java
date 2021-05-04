@@ -103,7 +103,7 @@ public class Controller extends HttpServlet {
         model.getCurrent().setUsuario_cedula(usuario.getCedula());
         model.getCurrent().setUsuario(usuario);
         try {
-            domainModel.estudianteUpdate(model.getCurrent());
+
             return "/presentation/Index.jsp";
         } catch (Exception ex) {
             Map<String,String> errores = new HashMap<>();
