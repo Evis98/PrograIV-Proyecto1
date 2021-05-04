@@ -49,33 +49,27 @@ z-index:2;
                 <div class="fila">
                             <div class="etiqueta">Cedula</div>
                       <div class="campo"><input placeholder="Cedula" type="text" name="cedula"></div>
+                </div>
                       <div class="fila">
                             <div class="etiqueta">Apellidos</div>
                       <div class="campo"><input placeholder="Apellidos" type="text" name="apellidos"></div>
+                      </div>
                 <div class="fila">
                             <div class="etiqueta">Nombre</div>
                       <div class="campo"><input placeholder="Nombre" type="text" name="nombre"></div>
+                      </div>
                 <div class="fila">
                             <div class="etiqueta">Email</div>
                       <div class="campo"><input placeholder="Email" type="text" name="email"></div>
+                      </div>
                 <div class="fila">
                             <div class="etiqueta">Telefono</div>
                       <div class="campo"><input placeholder="Telefono" type="text" name="telefono"></div>
+                      </div>
                 <div class="td action">
- <button onclick =
- "document.getElementById('o').style.display='block';
- document.getElementById('p').style.display='block';">
- Matricular</button>
- </div>
- <div id="o" class="overlay"></div>
- <div id="p" class="popup">
- <h2>Su código de matricula es:</h2>
- <h2>2384</h2>
- <button onclick =
- "document.getElementById('o').style.display='none';
- document.getElementById('p').style.display='none';">
- Regresar</button>
- </div>
+                    <div class="fila encabezado"><button  style="margin-bottom: 15px"> Registrar </button> </div>
+                </div>
+
             </div>
         </form>
          

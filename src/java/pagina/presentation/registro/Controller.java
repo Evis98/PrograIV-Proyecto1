@@ -43,7 +43,8 @@ public class Controller extends HttpServlet {
                 break;     
             case "/presentation/registro/show":
                 viewUrl=this.show(request);
-                break;  
+                break;
+
         }
         request.getRequestDispatcher(viewUrl).forward( request, response); 
   }
@@ -51,7 +52,6 @@ public class Controller extends HttpServlet {
   public String show(HttpServletRequest request) {
         return this.showAction(request);
     }
-
     public String showAction(HttpServletRequest request) {
         pagina.presentation.registro.Model model= (pagina.presentation.registro.Model) request.getAttribute("model");
         model.getCurrent().setUsuario_cedula("");
@@ -60,6 +60,8 @@ public class Controller extends HttpServlet {
         model.getCurrent().setTelefono("");
         return "/presentation/registro/View.jsp";
     }
+    
+
 
 
     
@@ -83,10 +85,11 @@ public class Controller extends HttpServlet {
      void updateModel(HttpServletRequest request){
       Model model = (Model) request.getAttribute("model");
       Estudiante est = new Estudiante();
+      String aux =  model.generaClave();
       
       Usuario user = new Usuario(
               request.getParameter("cedula"),
-              "666",1
+              aux,1
       
       );
        est = new Estudiante(
@@ -100,6 +103,7 @@ public class Controller extends HttpServlet {
         
       );
        model.setCurrent(est);
+       model.setClave(aux);
       
    }
     private String register(HttpServletRequest request) {
@@ -133,7 +137,7 @@ public class Controller extends HttpServlet {
             if (id == null ) {
                 domainModel.getServEstudiante().insertarEstudiante(aux);
               
-                return "/presentation/show";
+                return "/presentation/registro/Clave.jsp";
             } else {
                 throw new Exception();
             }
@@ -187,6 +191,8 @@ public class Controller extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+
 
     
 }
